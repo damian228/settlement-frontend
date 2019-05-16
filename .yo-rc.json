@@ -1,0 +1,22 @@
+{
+  "generator-ngx-rocket": {
+    "version": "6.1.0",
+    "props": {
+      "location": "path",
+      "target": ["web"],
+      "pwa": false,
+      "ui": "material",
+      "layout": "simple",
+      "auth": true,
+      "lazy": true,
+      "angulartics": false,
+      "tools": ["prettier"],
+      "utility": ["moment"],
+      "appName": "settlement",
+      "projectName": "settlement",
+      "packageManager": "npm",
+      "mobile": [],
+      "desktop": []
+    }
+  }
+}
