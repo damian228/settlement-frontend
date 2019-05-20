@@ -5,9 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '@app/material.module';
 
-import { AuthenticationService, CredentialsService, CoreModule } from '@app/core';
-import { MockAuthenticationService } from '@app/core/authentication/authentication.service.mock';
-import { MockCredentialsService } from '@app/core/authentication/credentials.service.mock';
+import { AuthenticationService, CoreModule, TokenService } from '@app/core';
 
 import { ShellComponent } from './shell.component';
 import { HeaderComponent } from './header/header.component';
@@ -19,10 +17,7 @@ describe('ShellComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, TranslateModule.forRoot(), BrowserAnimationsModule, FlexLayoutModule, MaterialModule, CoreModule],
-      providers: [
-        { provide: AuthenticationService, useClass: MockAuthenticationService },
-        { provide: CredentialsService, useClass: MockCredentialsService }
-      ],
+      providers: [{ provide: AuthenticationService }, { provide: TokenService }],
       declarations: [HeaderComponent, ShellComponent]
     }).compileComponents();
   }));

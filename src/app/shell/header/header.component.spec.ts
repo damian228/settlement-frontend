@@ -3,9 +3,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { MaterialModule } from '@app/material.module';
-import { AuthenticationService, CredentialsService, I18nService } from '@app/core';
-import { MockAuthenticationService } from '@app/core/authentication/authentication.service.mock';
-import { MockCredentialsService } from '@app/core/authentication/credentials.service.mock';
+import { AuthenticationService, I18nService, TokenService } from '@app/core';
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
@@ -16,11 +14,7 @@ describe('HeaderComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, MaterialModule, TranslateModule.forRoot()],
       declarations: [HeaderComponent],
-      providers: [
-        { provide: AuthenticationService, useClass: MockAuthenticationService },
-        { provide: CredentialsService, useClass: MockCredentialsService },
-        I18nService
-      ]
+      providers: [{ provide: AuthenticationService }, { provide: TokenService }, I18nService]
     }).compileComponents();
   }));
 

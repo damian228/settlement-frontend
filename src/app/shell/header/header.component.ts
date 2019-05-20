@@ -1,9 +1,10 @@
 import { Title } from '@angular/platform-browser';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSidenav } from '@angular/material';
 
-import { AuthenticationService, CredentialsService, I18nService } from '@app/core';
+import { AuthenticationService, I18nService, TokenService } from '@app/core';
+import { CommonStorageService } from '@app/core/common.storage.service';
 
 @Component({
   selector: 'app-header',
@@ -17,11 +18,16 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private titleService: Title,
     private authenticationService: AuthenticationService,
-    private credentialsService: CredentialsService,
-    private i18nService: I18nService
+    private commonStorageService: CommonStorageService,
+    private i18nService: I18nService,
+    private tokenService: TokenService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (!this.commonStorageService.userFront) {
+      this.commonStorageService.setUserFront(this.tokenService.getUserFront());
+    }
+  }
 
   setLanguage(language: string) {
     this.i18nService.language = language;
@@ -40,8 +46,7 @@ export class HeaderComponent implements OnInit {
   }
 
   get username(): string {
-    const credentials = this.credentialsService.credentials;
-    return credentials ? credentials.username : null;
+    return this.commonStorageService.userFront.userId;
   }
 
   get title(): string {

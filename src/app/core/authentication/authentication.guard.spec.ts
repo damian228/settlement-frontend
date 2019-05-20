@@ -1,33 +1,10 @@
-import { TestBed } from '@angular/core/testing';
-import { Router, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
-
-import { CredentialsService } from './credentials.service';
-import { MockCredentialsService } from './credentials.service.mock';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AuthenticationGuard } from './authentication.guard';
 
 describe('AuthenticationGuard', () => {
   let authenticationGuard: AuthenticationGuard;
-  let credentialsService: MockCredentialsService;
   let mockRouter: any;
   let mockSnapshot: RouterStateSnapshot;
-
-  beforeEach(() => {
-    mockRouter = {
-      navigate: jasmine.createSpy('navigate')
-    };
-    mockSnapshot = jasmine.createSpyObj<RouterStateSnapshot>('RouterStateSnapshot', ['toString']);
-
-    TestBed.configureTestingModule({
-      providers: [
-        AuthenticationGuard,
-        { provide: CredentialsService, useClass: MockCredentialsService },
-        { provide: Router, useValue: mockRouter }
-      ]
-    });
-
-    authenticationGuard = TestBed.get(AuthenticationGuard);
-    credentialsService = TestBed.get(CredentialsService);
-  });
 
   it('should have a canActivate method', () => {
     expect(typeof authenticationGuard.canActivate).toBe('function');
@@ -38,9 +15,6 @@ describe('AuthenticationGuard', () => {
   });
 
   it('should return false and redirect to login if user is not authenticated', () => {
-    // Arrange
-    credentialsService.credentials = null;
-
     // Act
     const result = authenticationGuard.canActivate(new ActivatedRouteSnapshot(), mockSnapshot);
 
@@ -53,7 +27,6 @@ describe('AuthenticationGuard', () => {
   });
 
   it('should save url as queryParam if user is not authenticated', () => {
-    credentialsService.credentials = null;
     mockRouter.url = '/about';
     mockSnapshot.url = '/about';
 

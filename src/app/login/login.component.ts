@@ -1,10 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
-
-import { environment } from '@env/environment';
-import { Logger, I18nService, AuthenticationService, untilDestroyed } from '@app/core';
+import { AuthenticationService, I18nService, Logger, untilDestroyed } from '@app/core';
 
 const log = new Logger('Login');
 
@@ -35,8 +33,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   login() {
     this.isLoading = true;
-    const login$ = this.authenticationService.login(this.loginForm.value);
-    login$
+    this.authenticationService
+      .login(this.loginForm.value)
       .pipe(
         finalize(() => {
           this.loginForm.markAsPristine();
@@ -45,8 +43,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         untilDestroyed(this)
       )
       .subscribe(
-        credentials => {
-          log.debug(`${credentials.username} successfully logged in`);
+        response => {
           this.router.navigate([this.route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
         },
         error => {
@@ -70,7 +67,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private createForm() {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
+      login: ['', Validators.required],
       password: ['', Validators.required],
       remember: true
     });

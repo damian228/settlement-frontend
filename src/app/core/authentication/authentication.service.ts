@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { Credentials, CredentialsService } from './credentials.service';
-
-export interface LoginContext {
-  username: string;
-  password: string;
-  remember?: boolean;
-}
+import { TokenService } from './token.service';
+import { HttpClient } from '@angular/common/http';
+import { shareReplay, tap } from 'rxjs/operators';
+import { LoginContext, LoginContextDTO, TokenDTO } from '@app/shared/dto';
+import { CommonStorageService } from '@app/core/common.storage.service';
 
 /**
  * Provides a base for authentication workflow.
@@ -15,30 +13,27 @@ export interface LoginContext {
  */
 @Injectable()
 export class AuthenticationService {
-  constructor(private credentialsService: CredentialsService) {}
+  constructor(private tokenService: TokenService, private httpClient: HttpClient, private commonStorageService: CommonStorageService) {}
 
   /**
    * Authenticates the user.
    * @param context The login parameters.
-   * @return The user credentials.
+   * @return The user token.
    */
-  login(context: LoginContext): Observable<Credentials> {
-    // Replace by proper authentication call
-    const data = {
-      username: context.username,
-      token: '123456'
-    };
-    this.credentialsService.setCredentials(data, context.remember);
-    return of(data);
+  login(context: LoginContext): Observable<TokenDTO> {
+    return this.httpClient.post<TokenDTO>('/auth/auth/login', new LoginContextDTO(context.login, context.password)).pipe(
+      tap(res => this.tokenService.setToken(res, context.remember)),
+      shareReplay()
+    );
   }
 
   /**
-   * Logs out the user and clear credentials.
+   * Logs out the user and clear token.
    * @return True if the user was logged out successfully.
    */
   logout(): Observable<boolean> {
-    // Customize credentials invalidation here
-    this.credentialsService.setCredentials();
+    this.tokenService.setToken();
+    this.commonStorageService.setUserFront();
     return of(true);
   }
 }
