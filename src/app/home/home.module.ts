@@ -9,10 +9,27 @@ import { MaterialModule } from '@app/material.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { QuoteService } from './quote.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { CalendarComponent } from './hours/calendar/calendar.component';
 
 @NgModule({
-  imports: [CommonModule, TranslateModule, CoreModule, SharedModule, FlexLayoutModule, MaterialModule, HomeRoutingModule],
-  declarations: [HomeComponent],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    CoreModule,
+    SharedModule,
+    FlexLayoutModule,
+    MaterialModule,
+    HomeRoutingModule,
+    BrowserAnimationsModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    })
+  ],
+  declarations: [HomeComponent, CalendarComponent],
   providers: [QuoteService]
 })
 export class HomeModule {}

@@ -9,6 +9,7 @@
     "lint": "ng lint && stylelint \"src/**/*.scss\" --syntax scss && htmlhint \"src\" --config .htmlhintrc",
     "prettier": "prettier --write \"./{src}/**/*.{ts,js,html,scss}\"",
     "prettier:check": "prettier --list-different \"./{src}/**/*.{ts,js,html,scss}\"",
+    "translations:extract": "ngx-translate-extract --input ./src --output ./src/translations/template.json --format=json --clean --sort --marker extract",
     "generate": "ng generate"
   },
   "dependencies": {
@@ -25,11 +26,14 @@
     "@angular/platform-browser-dynamic": "^7.2.3",
     "@angular/router": "^7.2.3",
     "@ngx-translate/core": "^11.0.1",
+    "angular-calendar": "^0.27.8",
     "core-js": "^2.6.3",
+    "date-fns": "^1.30.1",
     "hammerjs": "^2.0.8",
     "jwt-decode": "^2.2.0",
     "material-design-icons-iconfont": "^4.0.5",
     "moment": "^2.24.0",
+    "ngx-bootstrap": "^4.1.1",
     "rxjs": "^6.4.0",
     "zone.js": "^0.9.0"
   },
