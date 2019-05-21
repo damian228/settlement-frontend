@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material';
 import { DialogAddHours } from '@app/home/hours/dialog-add-hours/dialog-add-hours';
 import { HoursDTO } from '@app/shared/dto';
 import { HoursService } from '@app/home/hours/hours.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-calendar',
@@ -18,7 +19,7 @@ export class CalendarComponent implements OnInit {
   events: CalendarEvent[] = [];
   activeDayIsOpen: boolean = false;
 
-  constructor(private dialog: MatDialog, private hoursService: HoursService) {}
+  constructor(private dialog: MatDialog, private hoursService: HoursService, private toastr: ToastrService) {}
 
   ngOnInit() {}
 
@@ -31,7 +32,9 @@ export class CalendarComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       if (result) {
-        this.hoursService.reportHours(result).subscribe(res => console.log('Success hours added'), err => console.log('Failed'));
+        this.hoursService
+          .reportHours(result)
+          .subscribe(res => this.toastr.success('Saved successfully'), err => this.toastr.error('Error, failed to save'));
       }
     });
   }

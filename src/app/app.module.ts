@@ -13,6 +13,7 @@ import { ShellModule } from './shell/shell.module';
 import { LoginModule } from './login/login.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { AppRoutingModule } from './app-routing.module';
     HttpClientModule,
     TranslateModule.forRoot(),
     BrowserAnimationsModule,
+    ToastrModule.forRoot({ positionClass: 'toast-top-center' }),
     MaterialModule,
     CoreModule,
     SharedModule,
