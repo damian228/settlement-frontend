@@ -31,3 +31,13 @@ export class UserFront {
     this.surname = surname;
   }
 }
+
+export class HoursDTO {
+  count: number;
+  task: string;
+  day: number;
+
+  constructor(day: number) {
+    this.day = day;
+  }
+}

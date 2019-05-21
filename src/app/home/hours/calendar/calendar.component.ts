@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { CalendarEvent, CalendarView } from 'angular-calendar';
-import { isSameDay, isSameMonth } from 'date-fns';
+import { MatDialog } from '@angular/material';
+import { DialogAddHours } from '@app/home/hours/dialog-add-hours/dialog-add-hours';
+import { HoursDTO } from '@app/shared/dto';
+import { HoursService } from '@app/home/hours/hours.service';
 
 @Component({
   selector: 'app-calendar',
@@ -13,22 +16,24 @@ export class CalendarComponent implements OnInit {
   viewDate: Date = new Date();
   refresh: Subject<any> = new Subject();
   events: CalendarEvent[] = [];
-  activeDayIsOpen: boolean = true;
+  activeDayIsOpen: boolean = false;
 
-  constructor() {}
+  constructor(private dialog: MatDialog, private hoursService: HoursService) {}
 
   ngOnInit() {}
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    console.log('dupa', date);
-    if (isSameMonth(date, this.viewDate)) {
-      this.viewDate = date;
-      if ((isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) || events.length === 0) {
-        this.activeDayIsOpen = false;
-      } else {
-        this.activeDayIsOpen = true;
+    const dialogRef = this.dialog.open(DialogAddHours, {
+      width: '350px',
+      data: new HoursDTO(date.getTime())
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      if (result) {
+        this.hoursService.reportHours(result).subscribe(res => console.log('Success hours added'), err => console.log('Failed'));
       }
-    }
+    });
   }
 
   handleEvent(action: string, event: CalendarEvent): void {

@@ -13,6 +13,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CalendarComponent } from './hours/calendar/calendar.component';
+import { DialogAddHours } from './hours/dialog-add-hours/dialog-add-hours';
+import { FormsModule } from '@angular/forms';
+import { HoursService } from '@app/home/hours/hours.service';
 
 @NgModule({
   imports: [
@@ -27,9 +30,11 @@ import { CalendarComponent } from './hours/calendar/calendar.component';
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
-    })
+    }),
+    FormsModule
   ],
-  declarations: [HomeComponent, CalendarComponent],
-  providers: [QuoteService]
+  declarations: [HomeComponent, CalendarComponent, DialogAddHours],
+  entryComponents: [DialogAddHours],
+  providers: [QuoteService, HoursService]
 })
 export class HomeModule {}

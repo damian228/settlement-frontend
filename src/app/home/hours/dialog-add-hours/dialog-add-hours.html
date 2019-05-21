@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>How many hours you have worked?</h1>
+<mat-form-field>
+  <input type="number" max="24" min="1" matInput [(ngModel)]="data.count" [placeholder]="'Hours number' | translate" required #hourInput />
+</mat-form-field>
+<mat-form-field>
+  <input type="text" matInput [(ngModel)]="data.task" [placeholder]="'Project name' | translate" required #projectInput />
+</mat-form-field>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" translate>Close</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial [disabled]="!isValid()">Ok</button>
+</div>

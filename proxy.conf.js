@@ -11,7 +11,7 @@ const HttpsProxyAgent = require('https-proxy-agent');
 const proxyConfig = [
   {
     context: '/api',
-    target: 'http://52.236.85.2:8081/',
+    target: 'http://52.236.85.2/',
     secure: false
   }
 ];

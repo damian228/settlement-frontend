@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
-    this.quoteService
+    /*this.quoteService
       .getRandomQuote({ category: 'dev' })
       .pipe(
         finalize(() => {
@@ -25,6 +25,6 @@ export class HomeComponent implements OnInit {
       )
       .subscribe((quote: string) => {
         this.quote = quote;
-      });
+      });*/
   }
 }
