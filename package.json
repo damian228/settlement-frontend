@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "ng": "ng",
-    "build": "npm run env -s && ng build --prod",
+    "build": "ng build --prod --aot",
     "start": "ng serve --host 0.0.0.0 --disableHostCheck --proxy-config proxy.conf.js",
     "lint": "ng lint && stylelint \"src/**/*.scss\" --syntax scss && htmlhint \"src\" --config .htmlhintrc",
     "prettier": "prettier --write \"./{src}/**/*.{ts,js,html,scss}\"",

@@ -7,7 +7,7 @@
 
 export const environment = {
   production: true,
-  serverUrl: 'https://api.chucknorris.io',
+  serverUrl: '/api',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US', 'fr-FR']
 };
