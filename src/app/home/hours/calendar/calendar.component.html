@@ -6,7 +6,7 @@
         mwlCalendarPreviousView
         [view]="view"
         [(viewDate)]="viewDate"
-        (viewDateChange)="closeOpenMonthViewDay()"
+        (viewDateChange)="onMonthChange()"
         translate
       >
         Previous
@@ -14,14 +14,7 @@
       <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate" translate>
         Today
       </div>
-      <div
-        class="btn btn-primary"
-        mwlCalendarNextView
-        [view]="view"
-        [(viewDate)]="viewDate"
-        (viewDateChange)="closeOpenMonthViewDay()"
-        translate
-      >
+      <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="onMonthChange()" translate>
         Next
       </div>
     </div>
@@ -31,11 +24,22 @@
   </div>
 
   <mwl-calendar-month-view
+    [cellTemplate]="monthCellTemplate"
     [viewDate]="viewDate"
     [events]="events"
     [refresh]="refresh"
-    [activeDayIsOpen]="activeDayIsOpen"
     (dayClicked)="dayClicked($event.day)"
     (eventClicked)="handleEvent('Clicked', $event.event)"
   ></mwl-calendar-month-view>
+
+  <ng-template #monthCellTemplate let-day="day" let-locale="locale">
+    <div class="cell-container">
+      <div class="cal-cell-top">
+        <span *ngIf="day.events.length > 0" class="hour-count">{{ day.events[0].id }}h</span>
+        <span class="cal-day-number">{{ day.date | calendarDate: 'monthViewDayNumber':locale }}</span>
+      </div>
+      <span class="project-name" *ngIf="day.events.length > 0">{{ day.events[0].title }}</span>
+      <span class="add-hours-text" *ngIf="day.events.length == 0">Add hours working</span>
+    </div>
+  </ng-template>
 </div>
