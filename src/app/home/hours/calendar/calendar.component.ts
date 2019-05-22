@@ -56,7 +56,7 @@ export class CalendarComponent implements OnInit {
   }
 
   fetchHoursWorking() {
-    this.events = [];
+    this.events = []; //test
     this.hoursService
       .getHours({
         from: startOfMonth(this.viewDate).getTime(),
