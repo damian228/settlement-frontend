@@ -11,7 +11,7 @@
       >
         Previous
       </div>
-      <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate" translate>
+      <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate" (viewDateChange)="onMonthChange()" translate>
         Today
       </div>
       <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="onMonthChange()" translate>
@@ -39,7 +39,7 @@
         <span class="cal-day-number">{{ day.date | calendarDate: 'monthViewDayNumber':locale }}</span>
       </div>
       <span class="project-name" *ngIf="day.events.length > 0">{{ day.events[0].title }}</span>
-      <span class="add-hours-text" *ngIf="day.events.length == 0">Add hours working</span>
+      <span class="add-hours-text" *ngIf="day.events.length == 0">Add worked hours</span>
     </div>
   </ng-template>
 </div>

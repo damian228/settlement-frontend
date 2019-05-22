@@ -33,11 +33,12 @@ export class UserFront {
 }
 
 export class HoursDTO {
-  count: number;
-  task: string;
+  count?: number;
+  task?: string;
   day: number;
+}
 
-  constructor(day: number) {
-    this.day = day;
-  }
+export interface PeriodDTO {
+  from: number;
+  to: number;
 }
