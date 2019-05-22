@@ -57,8 +57,6 @@ export class CalendarComponent implements OnInit {
 
   fetchHoursWorking() {
     this.events = [];
-    console.log('Starting date', startOfMonth(this.viewDate));
-    console.log('Ending date', endOfMonth(this.viewDate)); // add loader
     this.hoursService
       .getHours({
         from: startOfMonth(this.viewDate).getTime(),
