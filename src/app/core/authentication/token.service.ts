@@ -17,6 +17,7 @@ export class TokenService {
     const savedToken = sessionStorage.getItem(this._tokenKey) || localStorage.getItem(this._tokenKey);
     if (savedToken) {
       this._token = JSON.parse(savedToken);
+      this.commonStorageService.setUserFront(this.getDecoded());
     }
   }
 

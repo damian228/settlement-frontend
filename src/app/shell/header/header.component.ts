@@ -6,6 +6,7 @@ import { MatSidenav } from '@angular/material';
 import { AuthenticationService, I18nService, TokenService } from '@app/core';
 import { CommonStorageService } from '@app/core/common.storage.service';
 import { Constants } from '@app/shared/constants';
+import { UserFront } from '@app/shared/dto';
 
 @Component({
   selector: 'app-header',
@@ -20,15 +21,10 @@ export class HeaderComponent implements OnInit {
     private titleService: Title,
     private authenticationService: AuthenticationService,
     private commonStorageService: CommonStorageService,
-    private i18nService: I18nService,
-    private tokenService: TokenService
+    private i18nService: I18nService
   ) {}
 
-  ngOnInit() {
-    if (!this.commonStorageService.userFront) {
-      this.commonStorageService.setUserFront(this.tokenService.getDecoded());
-    }
-  }
+  ngOnInit() {}
 
   setLanguage(language: string) {
     this.i18nService.language = language;
@@ -46,8 +42,8 @@ export class HeaderComponent implements OnInit {
     return this.i18nService.supportedLanguages;
   }
 
-  get username(): string {
-    return this.commonStorageService.userFront.userId;
+  get userFront(): UserFront {
+    return this.commonStorageService.userFront;
   }
 
   get title(): string {

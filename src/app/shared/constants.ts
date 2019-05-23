@@ -4,7 +4,7 @@ export class Constants {
 
   // routes
   public static ROOT_ROUTE = '/';
-  public static LOGIN_ROUTE = Constants.ROOT_ROUTE + 'LOGIN';
+  public static LOGIN_ROUTE = Constants.ROOT_ROUTE + 'login';
 
   // user roles
   public static PAYROLL_ROLE = 'PAYROLL';
