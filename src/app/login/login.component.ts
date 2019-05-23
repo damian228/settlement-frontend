@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
-import { AuthenticationService, I18nService, Logger, untilDestroyed } from '@app/core';
+import { AuthenticationService, I18nService, Logger, TokenService, untilDestroyed } from '@app/core';
 
 const log = new Logger('Login');
 
@@ -22,12 +22,19 @@ export class LoginComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private i18nService: I18nService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private tokenService: TokenService
   ) {
     this.createForm();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.tokenService.isAuthenticated()) {
+      this.router.navigate(['/'], { replaceUrl: true });
+    } else {
+      this.authenticationService.logout();
+    }
+  }
 
   ngOnDestroy() {}
 

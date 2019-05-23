@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     if (!this.commonStorageService.userFront) {
-      this.commonStorageService.setUserFront(this.tokenService.getUserFront());
+      this.commonStorageService.setUserFront(this.tokenService.getDecoded());
     }
   }
 

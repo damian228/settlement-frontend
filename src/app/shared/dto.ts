@@ -14,8 +14,9 @@ export class LoginContextDTO {
   }
 }
 
-export class TokenDTO {
+export interface TokenDTO {
   value: string;
+  exp?: number;
 }
 
 export class UserFront {

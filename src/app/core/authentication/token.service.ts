@@ -24,7 +24,7 @@ export class TokenService {
    * @return True if the user is authenticated.
    */
   isAuthenticated(): boolean {
-    return !!this.token;
+    return this.token && this.token.exp > Date.now() / 1000;
   }
 
   /**
@@ -46,6 +46,8 @@ export class TokenService {
     this._token = token || null;
 
     if (token) {
+      let decoded: any = decodePayload(token.value);
+      token.exp = decoded.exp;
       const storage = remember ? localStorage : sessionStorage;
       storage.setItem(this._tokenKey, JSON.stringify(token));
     } else {
@@ -54,11 +56,12 @@ export class TokenService {
     }
   }
 
-  getUserFront(): any {
-    if (!this._token) {
+  getDecoded(tokenDTO?: TokenDTO): any {
+    let token = tokenDTO || this._token;
+    if (!token) {
       return null;
     }
-    let decoded = decodePayload(this._token.value);
+    let decoded = decodePayload(token.value);
     console.log(decoded);
     return decoded;
   }
