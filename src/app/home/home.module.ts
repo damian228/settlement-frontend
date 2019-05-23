@@ -16,11 +16,13 @@ import { CalendarComponent } from './hours/calendar/calendar.component';
 import { DialogAddHours } from './hours/dialog-add-hours/dialog-add-hours';
 import { FormsModule } from '@angular/forms';
 import { HoursService } from '@app/home/hours/hours.service';
+import { AboutModule } from '@app/about/about.module';
 
 @NgModule({
   imports: [
     CommonModule,
     TranslateModule,
+    AboutModule,
     CoreModule,
     SharedModule,
     FlexLayoutModule,

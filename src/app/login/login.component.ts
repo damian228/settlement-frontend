@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
 import { AuthenticationService, I18nService, Logger, TokenService, untilDestroyed } from '@app/core';
+import { RouteNavigatorService } from '@app/core/route.navigator.service';
 
 const log = new Logger('Login');
 
@@ -23,14 +24,15 @@ export class LoginComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private i18nService: I18nService,
     private authenticationService: AuthenticationService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private navigatorService: RouteNavigatorService
   ) {
     this.createForm();
   }
 
   ngOnInit() {
     if (this.tokenService.isAuthenticated()) {
-      this.router.navigate(['/'], { replaceUrl: true });
+      this.router.navigate([this.navigatorService.getRouteForCurrentRole()], { replaceUrl: true });
     } else {
       this.authenticationService.logout();
     }
@@ -51,7 +53,9 @@ export class LoginComponent implements OnInit, OnDestroy {
       )
       .subscribe(
         response => {
-          this.router.navigate([this.route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
+          this.router.navigate([this.route.snapshot.queryParams.redirect || this.navigatorService.getRouteForCurrentRole()], {
+            replaceUrl: true
+          });
         },
         error => {
           log.debug(`Login error: ${error}`);

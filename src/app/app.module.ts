@@ -26,9 +26,9 @@ import { ToastrModule } from 'ngx-toastr';
     MaterialModule,
     CoreModule,
     SharedModule,
+    LoginModule,
     ShellModule,
     HomeModule,
-    LoginModule,
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],

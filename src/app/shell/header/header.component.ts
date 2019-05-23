@@ -5,6 +5,7 @@ import { MatSidenav } from '@angular/material';
 
 import { AuthenticationService, I18nService, TokenService } from '@app/core';
 import { CommonStorageService } from '@app/core/common.storage.service';
+import { Constants } from '@app/shared/constants';
 
 @Component({
   selector: 'app-header',
@@ -34,7 +35,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.authenticationService.logout().subscribe(() => this.router.navigate(['/login'], { replaceUrl: true }));
+    this.authenticationService.logout().subscribe(() => this.router.navigate([Constants.LOGIN_ROUTE], { replaceUrl: true }));
   }
 
   get currentLanguage(): string {

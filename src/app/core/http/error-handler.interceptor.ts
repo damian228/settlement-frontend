@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { environment } from '@env/environment';
 import { Router } from '@angular/router';
 import { Logger } from '@app/core/logger.service';
+import { Constants } from '@app/shared/constants';
 
 const log = new Logger('ErrorHandlerInterceptor');
 
@@ -28,7 +29,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
     }
 
     if (response.status && response.status == 401) {
-      this.router.navigate(['/login'], { replaceUrl: true });
+      this.router.navigate([Constants.LOGIN_ROUTE], { queryParams: { redirect: this.router.routerState.snapshot.url }, replaceUrl: true });
     }
     throw response;
   }

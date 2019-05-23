@@ -15,12 +15,14 @@ import { ErrorHandlerInterceptor } from './http/error-handler.interceptor';
 import { CacheInterceptor } from './http/cache.interceptor';
 import { AuthInterceptor } from '@app/core/http/auth.interceptor';
 import { CommonStorageService } from '@app/core/common.storage.service';
+import { RouteNavigatorService } from '@app/core/route.navigator.service';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule, TranslateModule, RouterModule],
   providers: [
     AuthenticationService,
     CommonStorageService,
+    RouteNavigatorService,
     TokenService,
     AuthenticationGuard,
     I18nService,

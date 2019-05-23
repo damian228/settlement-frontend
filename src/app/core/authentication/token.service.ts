@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Constants } from '@app/shared/constants';
 import { TokenDTO } from '@app/shared/dto';
 import * as decodePayload from 'jwt-decode';
+import { CommonStorageService } from '@app/core/common.storage.service';
 
 /**
  * Provides storage for authentication token.
@@ -12,7 +13,7 @@ export class TokenService {
   private _token: TokenDTO | null = null;
   private _tokenKey = Constants.TOKEN_KEY;
 
-  constructor() {
+  constructor(private commonStorageService: CommonStorageService) {
     const savedToken = sessionStorage.getItem(this._tokenKey) || localStorage.getItem(this._tokenKey);
     if (savedToken) {
       this._token = JSON.parse(savedToken);
@@ -47,6 +48,7 @@ export class TokenService {
 
     if (token) {
       let decoded: any = decodePayload(token.value);
+      this.commonStorageService.setUserFront(decoded);
       token.exp = decoded.exp;
       const storage = remember ? localStorage : sessionStorage;
       storage.setItem(this._tokenKey, JSON.stringify(token));
