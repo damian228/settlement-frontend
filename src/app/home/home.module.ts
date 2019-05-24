@@ -19,6 +19,8 @@ import { HoursService } from '@app/home/hours/hours.service';
 import { BillComponent } from '@app/home/bill/bill.component';
 import { DialogSalary } from './salary/dialog-salary/dialog-salary';
 import { SalaryService } from '@app/home/salary/salary.service';
+import { AccountNumberService } from '@app/home/accout-number/account-number.service';
+import { DialogAccountNumber } from './accout-number/dialog-account-number/dialog-account-number';
 
 @NgModule({
   imports: [
@@ -36,8 +38,8 @@ import { SalaryService } from '@app/home/salary/salary.service';
     }),
     FormsModule
   ],
-  declarations: [HomeComponent, CalendarComponent, DialogAddHours, BillComponent, DialogSalary],
-  entryComponents: [DialogAddHours, DialogSalary],
-  providers: [QuoteService, HoursService, SalaryService]
+  declarations: [HomeComponent, CalendarComponent, DialogAddHours, BillComponent, DialogSalary, DialogAccountNumber],
+  entryComponents: [DialogAddHours, DialogSalary, DialogAccountNumber],
+  providers: [QuoteService, HoursService, SalaryService, AccountNumberService]
 })
 export class HomeModule {}

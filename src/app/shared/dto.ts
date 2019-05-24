@@ -43,3 +43,7 @@ export interface PeriodDTO {
   from: number;
   to: number;
 }
+
+export interface AccountNumberDTO {
+  value: string;
+}

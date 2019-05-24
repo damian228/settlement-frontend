@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Bank account number</h1>
+<mat-form-field class="number-container">
+  <input type="text" matInput [(ngModel)]="accountNumber.value" [placeholder]="'Account number' | translate" required #numberInput />
+</mat-form-field>
+<div mat-dialog-actions>
+  <button mat-button (click)="closeWithoutSave()" translate>Close</button>
+  <button mat-button (click)="save()" [disabled]="!isValid() || isLoading">
+    <app-loader class="inline-loader" [isLoading]="isLoading"></app-loader>
+    <span translate>Save</span>
+  </button>
+</div>

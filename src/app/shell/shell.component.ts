@@ -6,6 +6,7 @@ import { filter } from 'rxjs/operators';
 import { untilDestroyed } from '@app/core';
 import { DialogSalary } from '@app/home/salary/dialog-salary/dialog-salary';
 import { SalaryService } from '@app/home/salary/salary.service';
+import { DialogAccountNumber } from '@app/home/accout-number/dialog-account-number/dialog-account-number';
 
 @Component({
   selector: 'app-shell',
@@ -38,7 +39,11 @@ export class ShellComponent implements OnInit, OnDestroy {
     });
   }
 
-  showAccountNumber(): void {}
+  showAccountNumber(): void {
+    this.dialog.open(DialogAccountNumber, {
+      width: '350px'
+    });
+  }
 
   ngOnDestroy() {
     // Needed for automatic unsubscribe with untilDestroyed
