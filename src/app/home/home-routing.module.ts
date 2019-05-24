@@ -4,13 +4,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { extract } from '@app/core';
 import { HomeComponent } from './home.component';
 import { Shell } from '@app/shell/shell.service';
-import { AboutComponent } from '@app/about/about.component';
+import { BillComponent } from '@app/home/bill/bill.component';
 
 const routes: Routes = [
   Shell.childRoutes([
     { path: 'employee', redirectTo: 'employee/home', pathMatch: 'full' },
     { path: 'employee/home', component: HomeComponent, data: { title: extract('Home') } },
-    { path: 'employee/about', component: AboutComponent, data: { title: extract('About') } }
+    { path: 'employee/bill', component: BillComponent, data: { title: extract('Bill') } }
   ])
 ];
 

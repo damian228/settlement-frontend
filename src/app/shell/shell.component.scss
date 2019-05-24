@@ -6,8 +6,7 @@
 }
 
 .mat-sidenav {
-  min-width: 270px;
-  max-width: 28%;
+  width: 200px;
 }
 
 .has-border {
@@ -45,4 +44,8 @@
   :host ::ng-deep .mat-drawer-backdrop {
     top: 56px;
   }
+}
+
+.shell {
+  padding: 0 20px;
 }

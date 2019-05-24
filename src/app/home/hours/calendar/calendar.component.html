@@ -39,7 +39,7 @@
         <span class="cal-day-number">{{ day.date | calendarDate: 'monthViewDayNumber':locale }}</span>
       </div>
       <span class="project-name" *ngIf="day.events.length > 0">{{ day.events[0].title }}</span>
-      <span class="add-hours-text" *ngIf="day.events.length == 0">Add worked hours</span>
+      <span class="add-hours-text" *ngIf="day.events.length == 0">Add hours</span>
     </div>
   </ng-template>
 </div>
