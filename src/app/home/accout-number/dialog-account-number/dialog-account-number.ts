@@ -11,8 +11,8 @@ import { finalize } from 'rxjs/operators';
   styleUrls: ['./dialog-account-number.scss']
 })
 export class DialogAccountNumber implements OnInit {
-  private accountNumber: AccountNumberDTO = { value: null };
-  private isLoading: boolean = false;
+  accountNumber: AccountNumberDTO = { value: null };
+  isLoading: boolean = false;
 
   @ViewChild('numberInput') numberInput: ElementRef;
 
