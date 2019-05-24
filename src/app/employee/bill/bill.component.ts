@@ -6,8 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bill.component.scss']
 })
 export class BillComponent implements OnInit {
-  version: string = '1.0';
-
   constructor() {}
 
   ngOnInit() {}

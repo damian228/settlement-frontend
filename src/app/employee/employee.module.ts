@@ -20,6 +20,8 @@ import { DialogSalary } from './salary/dialog-salary/dialog-salary';
 import { SalaryService } from '@app/employee/salary/salary.service';
 import { AccountNumberService } from '@app/employee/accout-number/account-number.service';
 import { DialogAccountNumber } from './accout-number/dialog-account-number/dialog-account-number';
+import { BillDetailsComponent } from './bill/bill-details/bill-details.component';
+import { BillListComponent } from './bill/bill-list/bill-list.component';
 
 @NgModule({
   imports: [
@@ -37,7 +39,16 @@ import { DialogAccountNumber } from './accout-number/dialog-account-number/dialo
     }),
     FormsModule
   ],
-  declarations: [EmployeeComponent, CalendarComponent, DialogAddHours, BillComponent, DialogSalary, DialogAccountNumber],
+  declarations: [
+    EmployeeComponent,
+    CalendarComponent,
+    DialogAddHours,
+    BillComponent,
+    DialogSalary,
+    DialogAccountNumber,
+    BillDetailsComponent,
+    BillListComponent
+  ],
   entryComponents: [DialogAddHours, DialogSalary, DialogAccountNumber],
   providers: [HoursService, SalaryService, AccountNumberService]
 })
