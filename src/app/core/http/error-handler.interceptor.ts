@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -7,6 +7,7 @@ import { environment } from '@env/environment';
 import { Router } from '@angular/router';
 import { Logger } from '@app/core/logger.service';
 import { Constants } from '@app/shared/constants';
+import { ToastrService } from 'ngx-toastr';
 
 const log = new Logger('ErrorHandlerInterceptor');
 
@@ -15,7 +16,7 @@ const log = new Logger('ErrorHandlerInterceptor');
  */
 @Injectable()
 export class ErrorHandlerInterceptor implements HttpInterceptor {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private toastrService: ToastrService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(catchError(error => this.errorHandler(error)));
@@ -28,9 +29,12 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
       log.error('Request error', response);
     }
 
-    if (response.status && response.status == 401) {
+    if (response && response.status === 401) {
       this.router.navigate([Constants.LOGIN_ROUTE], { queryParams: { redirect: this.router.routerState.snapshot.url }, replaceUrl: true });
+    } else if (response && response.status === 400 && response.error.message && !response.url.includes(Constants.LOGIN_ROUTE)) {
+      this.toastrService.error(response.error.message);
     }
+
     throw response;
   }
 }

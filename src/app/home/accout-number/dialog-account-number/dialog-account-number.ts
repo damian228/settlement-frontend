@@ -42,12 +42,18 @@ export class DialogAccountNumber implements OnInit {
       .pipe(
         finalize(() => {
           this.isLoading = false;
-          this.dialogRef.close();
         })
       )
       .subscribe(
-        () => this.toastrService.success('Account number saved successfully'),
-        err => this.toastrService.error('Error, failed to save')
+        () => {
+          this.toastrService.success('Account number saved successfully');
+          this.dialogRef.close();
+        },
+        err => {
+          if (err.status !== 400) {
+            this.toastrService.error('Error, failed to save');
+          }
+        }
       );
   }
 
