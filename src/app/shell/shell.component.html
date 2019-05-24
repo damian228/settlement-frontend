@@ -12,6 +12,14 @@
             <span translate>Bill</span>
           </a>
           <mat-divider></mat-divider>
+          <a mat-list-item (click)="showSalary(); sidenav.close()">
+            <span translate>Salary</span>
+          </a>
+          <mat-divider></mat-divider>
+          <a mat-list-item (click)="showAccountNumber(); sidenav.close()">
+            <span translate>Account number</span>
+          </a>
+          <mat-divider></mat-divider>
         </mat-list>
       </nav>
     </mat-sidenav>

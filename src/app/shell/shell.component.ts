@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
-import { MatSidenav } from '@angular/material';
+import { MatDialog, MatSidenav } from '@angular/material';
 import { filter } from 'rxjs/operators';
 
 import { untilDestroyed } from '@app/core';
+import { DialogSalary } from '@app/home/salary/dialog-salary/dialog-salary';
+import { SalaryService } from '@app/home/salary/salary.service';
 
 @Component({
   selector: 'app-shell',
@@ -13,7 +15,7 @@ import { untilDestroyed } from '@app/core';
 export class ShellComponent implements OnInit, OnDestroy {
   @ViewChild('sidenav') sidenav!: MatSidenav;
 
-  constructor(private media: MediaObserver) {}
+  constructor(private dialog: MatDialog, private salaryService: SalaryService, private media: MediaObserver) {}
 
   ngOnInit() {
     // Automatically close side menu on screens > sm breakpoint
@@ -24,6 +26,19 @@ export class ShellComponent implements OnInit, OnDestroy {
       )
       .subscribe(() => this.sidenav.close());
   }
+
+  showSalary(): void {
+    this.salaryService.getHours().subscribe(salary => this.showSalaryDialog(salary));
+  }
+
+  showSalaryDialog(salary: number) {
+    this.dialog.open(DialogSalary, {
+      width: '250px',
+      data: salary
+    });
+  }
+
+  showAccountNumber(): void {}
 
   ngOnDestroy() {
     // Needed for automatic unsubscribe with untilDestroyed
