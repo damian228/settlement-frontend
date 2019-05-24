@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { CalendarEvent, CalendarView } from 'angular-calendar';
 import { MatDialog } from '@angular/material';
-import { DialogAddHours } from '@app/home/hours/dialog-add-hours/dialog-add-hours';
+import { DialogAddHours } from '@app/employee/hours/dialog-add-hours/dialog-add-hours';
 import { HoursDTO } from '@app/shared/dto';
-import { HoursService } from '@app/home/hours/hours.service';
+import { HoursService } from '@app/employee/hours/hours.service';
 import { ToastrService } from 'ngx-toastr';
 import { endOfMonth, startOfMonth, isSameMonth } from 'date-fns';
 

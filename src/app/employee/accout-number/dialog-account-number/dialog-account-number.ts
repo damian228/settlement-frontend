@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { AccountNumberDTO } from '@app/shared/dto';
-import { AccountNumberService } from '@app/home/accout-number/account-number.service';
+import { AccountNumberService } from '@app/employee/accout-number/account-number.service';
 import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs/operators';
 

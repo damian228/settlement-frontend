@@ -4,9 +4,9 @@ import { MatDialog, MatSidenav } from '@angular/material';
 import { filter } from 'rxjs/operators';
 
 import { untilDestroyed } from '@app/core';
-import { DialogSalary } from '@app/home/salary/dialog-salary/dialog-salary';
-import { SalaryService } from '@app/home/salary/salary.service';
-import { DialogAccountNumber } from '@app/home/accout-number/dialog-account-number/dialog-account-number';
+import { DialogSalary } from '@app/employee/salary/dialog-salary/dialog-salary';
+import { SalaryService } from '@app/employee/salary/salary.service';
+import { DialogAccountNumber } from '@app/employee/accout-number/dialog-account-number/dialog-account-number';
 
 @Component({
   selector: 'app-shell',
