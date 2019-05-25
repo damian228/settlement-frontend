@@ -9,7 +9,7 @@ export class AccountNumberService {
   constructor(private httpClient: HttpClient) {}
 
   saveAccountNumber(accountNumber: AccountNumberDTO): Observable<Object> {
-    return this.httpClient.post('/employee/accountnumber?number=' + accountNumber.value, null);
+    return this.httpClient.post(`/employee/accountnumber?number=${accountNumber.value}`, null);
   }
 
   getAccountNumber(): Observable<AccountNumberDTO> {

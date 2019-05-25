@@ -47,3 +47,31 @@ export interface PeriodDTO {
 export interface AccountNumberDTO {
   value: string;
 }
+
+export interface BillDTO extends CreateBillDTO {
+  id: number;
+  employeeId: string;
+  brutto: number;
+  netto: number;
+  incomeCosts: number;
+  tax: number;
+  hours: number;
+  salary: number;
+}
+
+export interface CreateBillDTO {
+  settlementNumber: string;
+  from: number;
+  to: number;
+}
+
+export interface PageableFilterDTO {
+  pageNumber: number;
+  pageSize: number;
+}
+
+export interface ListChunk<T> {
+  count: number;
+  hasNext: boolean;
+  list: T[];
+}
