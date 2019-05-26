@@ -21,10 +21,13 @@ export class AuthenticationService {
    * @return The user token.
    */
   login(context: LoginContext): Observable<TokenDTO> {
-    return this.httpClient.post<TokenDTO>('/auth/auth/login', new LoginContextDTO(context.login, context.password)).pipe(
-      tap(res => this.tokenService.setToken(res, context.remember)),
-      shareReplay()
-    );
+    return this.httpClient
+      .skipErrorHandler()
+      .post<TokenDTO>('/auth/auth/login', new LoginContextDTO(context.login, context.password))
+      .pipe(
+        tap(res => this.tokenService.setToken(res, context.remember)),
+        shareReplay()
+      );
   }
 
   /**

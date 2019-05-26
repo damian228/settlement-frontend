@@ -1,0 +1,45 @@
+<h1 mat-dialog-title>Bill Details</h1>
+<form #createBillForm>
+  <div fxLayout="column">
+    <mat-form-field>
+      <input
+        type="text"
+        matInput
+        required
+        [(ngModel)]="billCreate.settlementNumber"
+        (ngModelChange)="onModelChanges(createBillForm.checkValidity())"
+        [readonly]="readonly"
+        [placeholder]="'Settlement number' | translate"
+        name="settlementNumber"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        required
+        [matDatepicker]="fromDate"
+        placeholder="Date from"
+        name="from"
+        [readonly]="readonly"
+        [(ngModel)]="billCreate.from"
+        (dateChange)="onModelChanges(createBillForm.checkValidity())"
+      />
+      <mat-datepicker-toggle matSuffix [for]="fromDate" [disabled]="readonly"></mat-datepicker-toggle>
+      <mat-datepicker #fromDate></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        required
+        [matDatepicker]="toDate"
+        placeholder="Date to"
+        name="to"
+        [readonly]="readonly"
+        [(ngModel)]="billCreate.to"
+        (dateChange)="onModelChanges(createBillForm.checkValidity())"
+      />
+      <mat-datepicker-toggle matSuffix [for]="toDate" [disabled]="readonly"></mat-datepicker-toggle>
+      <mat-datepicker #toDate></mat-datepicker>
+    </mat-form-field>
+  </div>
+</form>

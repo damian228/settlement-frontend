@@ -31,7 +31,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
 
     if (response && response.status === 401) {
       this.router.navigate([Constants.LOGIN_ROUTE], { queryParams: { redirect: this.router.routerState.snapshot.url }, replaceUrl: true });
-    } else if (response && response.status === 400 && response.error.message && !response.url.includes(Constants.LOGIN_ROUTE)) {
+    } else if (response && response.status === 400 && response.error.message) {
       this.toastrService.error(response.error.message);
     }
 

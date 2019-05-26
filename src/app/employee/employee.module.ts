@@ -23,6 +23,8 @@ import { DialogAccountNumber } from './accout-number/dialog-account-number/dialo
 import { BillDetailsComponent } from './bill/bill-details/bill-details.component';
 import { BillListComponent } from './bill/bill-list/bill-list.component';
 import { BillService } from '@app/employee/bill/bill.service';
+import { BillResolver } from '@app/employee/bill/bill.resolver';
+import { BillCreateComponent } from './bill/bill-create/bill-create.component';
 
 @NgModule({
   imports: [
@@ -48,9 +50,10 @@ import { BillService } from '@app/employee/bill/bill.service';
     DialogSalary,
     DialogAccountNumber,
     BillDetailsComponent,
-    BillListComponent
+    BillListComponent,
+    BillCreateComponent
   ],
   entryComponents: [DialogAddHours, DialogSalary, DialogAccountNumber],
-  providers: [HoursService, SalaryService, AccountNumberService, BillService]
+  providers: [HoursService, SalaryService, AccountNumberService, BillService, BillResolver]
 })
 export class EmployeeModule {}

@@ -1,3 +1,71 @@
-<p>
-  bill-details works!
-</p>
+<h1 mat-dialog-title>Bill Details</h1>
+<form>
+  <div fxLayout="column">
+    <mat-form-field>
+      <input type="text" matInput [(ngModel)]="billDetails.id" [readonly]="readonly" [placeholder]="'Id' | translate" name="id" />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="text"
+        matInput
+        [(ngModel)]="billDetails.employeeId"
+        [readonly]="readonly"
+        [placeholder]="'User name' | translate"
+        name="employeeId"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="text"
+        matInput
+        [(ngModel)]="billDetails.brutto"
+        [readonly]="readonly"
+        [placeholder]="'Gross income' | translate"
+        name="brutto"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="text"
+        matInput
+        [(ngModel)]="billDetails.netto"
+        [readonly]="readonly"
+        [placeholder]="'Net income' | translate"
+        name="netto"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="text"
+        matInput
+        [(ngModel)]="billDetails.incomeCosts"
+        [readonly]="readonly"
+        [placeholder]="'Income costs' | translate"
+        name="incomeCosts"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" matInput [(ngModel)]="billDetails.tax" [readonly]="readonly" [placeholder]="'Tax' | translate" name="tax" />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="text"
+        matInput
+        [(ngModel)]="billDetails.salary"
+        [readonly]="readonly"
+        [placeholder]="'Salary' | translate"
+        name="salary"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="text"
+        matInput
+        [(ngModel)]="billDetails.hours"
+        [readonly]="readonly"
+        [placeholder]="'Working hours' | translate"
+        name="hours"
+      />
+    </mat-form-field>
+  </div>
+</form>

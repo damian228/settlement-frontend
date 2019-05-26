@@ -48,7 +48,7 @@ export interface AccountNumberDTO {
   value: string;
 }
 
-export interface BillDTO extends CreateBillDTO {
+export interface BillDetailsDTO {
   id: number;
   employeeId: string;
   brutto: number;
@@ -61,9 +61,11 @@ export interface BillDTO extends CreateBillDTO {
 
 export interface CreateBillDTO {
   settlementNumber: string;
-  from: number;
-  to: number;
+  from: number | Date;
+  to: number | Date;
 }
+
+export interface BillDTO extends BillDetailsDTO, CreateBillDTO {}
 
 export interface PageableFilterDTO {
   pageNumber: number;

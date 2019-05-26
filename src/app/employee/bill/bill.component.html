@@ -1,6 +1,14 @@
 <div class="bill">
-  <mat-card>
-    <app-bill-details></app-bill-details>
-    <app-bill-list></app-bill-list>
-  </mat-card>
+  <div class="login-container" fxLayout="row">
+    <mat-card *ngIf="currentBill.id" fxFlex="90%" fxFlex.sm="50%" fxFlex.md="50%" fxFlex.gt-md="16%">
+      <app-bill-details [billDetails]="currentBill" [readonly]="true"></app-bill-details>
+    </mat-card>
+    <mat-card fxFlex="90%" fxFlex.sm="50%" fxFlex.md="50%" fxFlex.gt-md="18%">
+      <app-bill-create [billCreate]="currentBill" [readonly]="false" (valid)="onValidate($event)"></app-bill-create>
+      <button *ngIf="!currentBill.id" mat-button (click)="generateBill()" [disabled]="!billCreateValid || isLoading">Generate</button>
+    </mat-card>
+    <mat-card fxFlex="90%" fxFlex.sm="100%" fxFlex.md="100%" fxFlex.gt-md="67%">
+      <app-bill-list></app-bill-list>
+    </mat-card>
+  </div>
 </div>
