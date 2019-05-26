@@ -3,6 +3,7 @@ import { BillService } from '@app/employee/bill/bill.service';
 import { ActivatedRoute } from '@angular/router';
 import { BillDTO } from '@app/shared/dto';
 import { finalize } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-bill',
@@ -14,7 +15,7 @@ export class BillComponent implements OnInit {
   billCreateValid: boolean;
   isLoading: boolean = false;
 
-  constructor(private billService: BillService, private route: ActivatedRoute) {}
+  constructor(private billService: BillService, private route: ActivatedRoute, private toastr: ToastrService) {}
 
   ngOnInit() {
     this.currentBill = this.route.snapshot.data['bill'];
@@ -37,6 +38,25 @@ export class BillComponent implements OnInit {
       .generateBill(this.currentBill)
       .pipe(finalize(() => (this.isLoading = false)))
       .subscribe(bill => (this.currentBill = bill));
+  }
+
+  updateBill() {
+    this.isLoading = true;
+    this.billService
+      .updateBill(this.currentBill.id, this.currentBill)
+      .pipe(finalize(() => (this.isLoading = false)))
+      .subscribe(bill => {
+        this.toastr.success('Bill updated successfully');
+        this.currentBill = bill;
+      });
+  }
+
+  sendBill() {
+    this.isLoading = true;
+    this.billService
+      .sendBill(this.currentBill.id)
+      .pipe(finalize(() => (this.isLoading = false)))
+      .subscribe(() => this.toastr.success('Bill has been sent to manager'));
   }
 
   onValidate(isValid: boolean) {

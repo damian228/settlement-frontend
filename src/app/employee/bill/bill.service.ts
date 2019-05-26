@@ -16,7 +16,7 @@ export class BillService {
 
   updateBill(billId: number, createBillDTO: CreateBillDTO): Observable<BillDTO> {
     return this.httpClient
-      .put(`/employee/bill/${billId}/update`, createBillDTO)
+      .put(`/employee/bill/${billId}/update`, this.mapDateToTimestamp(createBillDTO))
       .pipe(map((bill: BillDTO) => this.mapTimestampToDate(bill)));
   }
 
@@ -51,7 +51,7 @@ export class BillService {
   }
 
   mapDateToTimestamp(bill: CreateBillDTO): CreateBillDTO {
-    return { ...bill, to: bill.to.valueOf(), from: bill.from.valueOf() };
+    return { settlementNumber: bill.settlementNumber, to: bill.to.valueOf(), from: bill.from.valueOf() };
   }
 
   mapTimestampToDate(bill: BillDTO) {
