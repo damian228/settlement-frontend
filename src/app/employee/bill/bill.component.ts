@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BillService } from '@app/employee/bill/bill.service';
 import { ActivatedRoute } from '@angular/router';
-import { BillDTO } from '@app/shared/dto';
+import { BillDTO, ListChunk, PageableFilterDTO } from '@app/shared/dto';
 import { finalize } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 
@@ -13,7 +13,8 @@ import { ToastrService } from 'ngx-toastr';
 export class BillComponent implements OnInit {
   currentBill: BillDTO;
   billCreateValid: boolean;
-  isLoading: boolean = false;
+  isLoading = false;
+  archivedBills: ListChunk<BillDTO>;
 
   constructor(private billService: BillService, private route: ActivatedRoute, private toastr: ToastrService) {}
 
@@ -21,6 +22,7 @@ export class BillComponent implements OnInit {
     this.currentBill = this.route.snapshot.data['bill'];
     this.billCreateValid = this.initBillCreateValidation();
     console.log('Mamy bill', this.currentBill);
+    this.fetchArchivedBills({ pageNumber: 0, pageSize: 5 });
   }
 
   initBillCreateValidation(): boolean {
@@ -30,6 +32,10 @@ export class BillComponent implements OnInit {
       this.currentBill.settlementNumber &&
       this.currentBill.settlementNumber.trim().length > 0
     );
+  }
+
+  fetchArchivedBills(filter: PageableFilterDTO): void {
+    this.billService.getArchived(filter).subscribe(bills => (this.archivedBills = bills));
   }
 
   generateBill() {
