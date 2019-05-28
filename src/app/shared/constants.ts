@@ -11,4 +11,18 @@ export class Constants {
   public static MANAGER_ROLE = 'MANAGER';
   public static EMPLOYEE_ROLE = 'EMPLOYEE';
   public static ANONYMOUS_ROLE = 'ANONYMOUS';
+
+  public static EMPLOYEE_ARCHIVE_BILLS_COLUMNS = [
+    'id',
+    'settlementNumber',
+    'from',
+    'to',
+    'employeeId',
+    'brutto',
+    'netto',
+    'incomeCosts',
+    'tax',
+    'salary',
+    'hours'
+  ];
 }

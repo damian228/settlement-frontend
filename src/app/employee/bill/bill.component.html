@@ -1,8 +1,8 @@
-<div class="bill" fxLayout="row">
-  <mat-card *ngIf="currentBill.id" fxFlex="90%" fxFlex.sm="50%" fxFlex.md="50%" fxFlex.gt-md="16%">
+<div class="bill" fxLayout="row wrap">
+  <mat-card *ngIf="currentBill.id" fxFlex="90" fxFlex.sm="auto" fxFlex.md="auto" fxFlex.gt-md="16">
     <app-bill-details [billDetails]="currentBill" [readonly]="true"></app-bill-details>
   </mat-card>
-  <mat-card fxFlex="90%" fxFlex.sm="50%" fxFlex.md="50%" fxFlex.gt-md="18%">
+  <mat-card fxFlex="90" fxFlex.sm="auto" fxFlex.md="auto" fxFlex.gt-md="18">
     <app-bill-create [billCreate]="currentBill" [readonly]="false" (valid)="onValidate($event)"></app-bill-create>
     <button *ngIf="!currentBill.id" mat-button (click)="generateBill()" [disabled]="!billCreateValid || isLoading">
       Generate
@@ -10,8 +10,13 @@
     <button *ngIf="currentBill.id" mat-button (click)="updateBill()" [disabled]="!billCreateValid || isLoading">Update</button>
     <button *ngIf="currentBill.id" mat-button (click)="sendBill()" [disabled]="!billCreateValid || isLoading">Send to manager</button>
   </mat-card>
-  <mat-card fxFlex="90%" fxFlex.sm="100%" fxFlex.md="100%" fxFlex.gt-md="67%">
+  <mat-card class="bill-list" fxFlex fxFlex.sm="100" fxFlex.md="100">
     <h1 mat-dialog-title>Archived bills</h1>
-    <app-bill-list *ngIf="archivedBills" [billList]="archivedBills" (pagerChange)="onPagerChane($event)"></app-bill-list>
+    <app-bill-list
+      *ngIf="archivedBills"
+      [billList]="archivedBills"
+      [displayedColumns]="showColumns"
+      (pagerChange)="onPagerChane($event)"
+    ></app-bill-list>
   </mat-card>
 </div>

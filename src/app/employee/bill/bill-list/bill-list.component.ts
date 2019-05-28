@@ -14,22 +14,12 @@ export class BillListComponent implements OnInit {
     this.paginator.length = billList.count;
   }
 
+  @Input()
+  displayedColumns: string[];
+
   @Output()
   pagerChange: EventEmitter<PageEvent> = new EventEmitter();
 
-  displayedColumns: string[] = [
-    'id',
-    'settlementNumber',
-    'from',
-    'to',
-    'employeeId',
-    'brutto',
-    'netto',
-    'incomeCosts',
-    'tax',
-    'salary',
-    'hours'
-  ];
   dataSource: MatTableDataSource<BillDTO> = new MatTableDataSource<BillDTO>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

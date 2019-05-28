@@ -5,6 +5,7 @@ import { BillDTO, ListChunk, PageableFilterDTO } from '@app/shared/dto';
 import { finalize } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { PageEvent } from '@angular/material';
+import { Constants } from '@app/shared/constants';
 
 @Component({
   selector: 'app-bill',
@@ -17,6 +18,7 @@ export class BillComponent implements OnInit {
   isLoading = false;
   archivedBills: ListChunk<BillDTO>;
   initPageSize = 5;
+  showColumns = Constants.EMPLOYEE_ARCHIVE_BILLS_COLUMNS;
 
   constructor(private billService: BillService, private route: ActivatedRoute, private toastr: ToastrService) {}
 
