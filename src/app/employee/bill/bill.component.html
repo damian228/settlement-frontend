@@ -12,6 +12,6 @@
   </mat-card>
   <mat-card fxFlex="90%" fxFlex.sm="100%" fxFlex.md="100%" fxFlex.gt-md="67%">
     <h1 mat-dialog-title>Archived bills</h1>
-    <app-bill-list [billList]="archivedBills"></app-bill-list>
+    <app-bill-list *ngIf="archivedBills" [billList]="archivedBills" (pagerChange)="onPagerChane($event)"></app-bill-list>
   </mat-card>
 </div>

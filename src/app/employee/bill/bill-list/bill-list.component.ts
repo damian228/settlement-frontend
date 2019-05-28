@@ -10,8 +10,8 @@ import { MatPaginator, MatTableDataSource, PageEvent } from '@angular/material';
 export class BillListComponent implements OnInit {
   @Input()
   set billList(billList: ListChunk<BillDTO>) {
-    this.dataSource = new MatTableDataSource<BillDTO>(billList ? billList.list : []);
-    this.dataSource.paginator = this.paginator;
+    this.dataSource = new MatTableDataSource<BillDTO>(billList.list);
+    this.paginator.length = billList.count;
   }
 
   @Output()
