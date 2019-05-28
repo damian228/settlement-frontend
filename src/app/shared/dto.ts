@@ -77,3 +77,22 @@ export interface ListChunk<T> {
   hasNext: boolean;
   list: T[];
 }
+
+export interface InvoiceDTO {
+  id: number;
+  settlementNumber: string;
+  employeeId: string;
+  amount: number;
+  status: string;
+}
+
+export interface FileDTO {
+  content: string;
+  name: string;
+}
+
+export interface AddInvoiceDTO {
+  settlementNumber: string;
+  amount: number;
+  fileDTO?: FileDTO;
+}
