@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BillDTO, CreateBillDTO, ListChunk, PageableFilterDTO } from '@app/shared/dto';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable()
@@ -47,7 +47,126 @@ export class BillService {
   }
 
   getArchived(pageableFilterDTO: PageableFilterDTO): Observable<ListChunk<BillDTO>> {
-    return this.httpClient.post('/employee/bill/archived', pageableFilterDTO).pipe(map((response: ListChunk<BillDTO>) => response));
+    //return this.httpClient.post('/employee/bill/archived', pageableFilterDTO).pipe(map((response: ListChunk<BillDTO>) => response));
+    if (pageableFilterDTO.pageSize == 1) {
+      if (pageableFilterDTO.pageNumber == 0) {
+        return of({
+          list: [
+            {
+              id: 1,
+              employeeId: 'employee',
+              brutto: 2000,
+              netto: 1712.0,
+              incomeCosts: 400.0,
+              tax: 288.0,
+              hours: 80,
+              salary: 25,
+              settlementNumber: 'TEST1',
+              from: 1556402400000,
+              to: 1558908000000
+            }
+          ],
+          count: 3,
+          hasNext: true
+        });
+      } else if (pageableFilterDTO.pageNumber == 1) {
+        return of({
+          list: [
+            {
+              id: 2,
+              employeeId: 'employee',
+              brutto: 2000,
+              netto: 1712.0,
+              incomeCosts: 400.0,
+              tax: 288.0,
+              hours: 80,
+              salary: 25,
+              settlementNumber: 'TEST2',
+              from: 1556402400000,
+              to: 1558908000000
+            }
+          ],
+          count: 3,
+          hasNext: true
+        });
+      } else {
+        return of({
+          list: [
+            {
+              id: 3,
+              employeeId: 'employee',
+              brutto: 2000,
+              netto: 1712.0,
+              incomeCosts: 400.0,
+              tax: 288.0,
+              hours: 80,
+              salary: 25,
+              settlementNumber: 'TEST3',
+              from: 1556402400000,
+              to: 1558908000000
+            }
+          ],
+          count: 3,
+          hasNext: false
+        });
+      }
+    } else {
+      //assume page size == 2
+      if (pageableFilterDTO.pageNumber == 0) {
+        return of({
+          list: [
+            {
+              id: 1,
+              employeeId: 'employee',
+              brutto: 2000,
+              netto: 1712.0,
+              incomeCosts: 400.0,
+              tax: 288.0,
+              hours: 80,
+              salary: 25,
+              settlementNumber: 'TEST1',
+              from: 1556402400000,
+              to: 1558908000000
+            },
+            {
+              id: 2,
+              employeeId: 'employee',
+              brutto: 2000,
+              netto: 1712.0,
+              incomeCosts: 400.0,
+              tax: 288.0,
+              hours: 80,
+              salary: 25,
+              settlementNumber: 'TEST2',
+              from: 1556402400000,
+              to: 1558908000000
+            }
+          ],
+          count: 3,
+          hasNext: true
+        });
+      } else {
+        return of({
+          list: [
+            {
+              id: 3,
+              employeeId: 'employee',
+              brutto: 2000,
+              netto: 1712.0,
+              incomeCosts: 400.0,
+              tax: 288.0,
+              hours: 80,
+              salary: 25,
+              settlementNumber: 'TEST3',
+              from: 1556402400000,
+              to: 1558908000000
+            }
+          ],
+          count: 3,
+          hasNext: false
+        });
+      }
+    }
   }
 
   mapDateToTimestamp(bill: CreateBillDTO): CreateBillDTO {

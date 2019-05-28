@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BillDTO, ListChunk, PageableFilterDTO } from '@app/shared/dto';
 import { finalize } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
+import { PageEvent } from '@angular/material';
 
 @Component({
   selector: 'app-bill',
@@ -15,6 +16,7 @@ export class BillComponent implements OnInit {
   billCreateValid: boolean;
   isLoading = false;
   archivedBills: ListChunk<BillDTO>;
+  currentPage: PageEvent;
 
   constructor(private billService: BillService, private route: ActivatedRoute, private toastr: ToastrService) {}
 
@@ -22,7 +24,7 @@ export class BillComponent implements OnInit {
     this.currentBill = this.route.snapshot.data['bill'];
     this.billCreateValid = this.initBillCreateValidation();
     console.log('Mamy bill', this.currentBill);
-    this.fetchArchivedBills({ pageNumber: 0, pageSize: 5 });
+    this.fetchArchivedBills({ pageNumber: 0, pageSize: 1 });
   }
 
   initBillCreateValidation(): boolean {
@@ -63,6 +65,11 @@ export class BillComponent implements OnInit {
       .sendBill(this.currentBill.id)
       .pipe(finalize(() => (this.isLoading = false)))
       .subscribe(() => this.toastr.success('Bill has been sent to manager'));
+  }
+
+  onPagerChane(pageEvent: PageEvent): void {
+    this.currentPage = pageEvent;
+    this.fetchArchivedBills({ pageNumber: pageEvent.pageIndex, pageSize: pageEvent.pageSize });
   }
 
   onValidate(isValid: boolean) {
