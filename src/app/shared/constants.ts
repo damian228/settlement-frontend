@@ -25,4 +25,6 @@ export class Constants {
     'salary',
     'hours'
   ];
+
+  public static EMPLOYEE_ACTIVE_INVOICES_COLUMNS = ['id', 'amount', 'employeeId', 'settlementNumber', 'status', 'download', 'edit'];
 }

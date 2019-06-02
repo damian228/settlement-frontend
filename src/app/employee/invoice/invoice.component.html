@@ -1,3 +1,11 @@
-<p>
-  invoice works!
-</p>
+<mat-card class="invoice-list" fxFlex fxFlex.sm="100" fxFlex.md="100">
+  <h1 mat-dialog-title>Active invoices</h1>
+  <app-invoice-list
+    *ngIf="activeInvoices"
+    [invoiceList]="activeInvoices"
+    [displayedColumns]="activeShowColumns"
+    (pagerChange)="onPagerChane($event)"
+    (edit)="onEdit($event)"
+    (download)="onDownload($event)"
+  ></app-invoice-list>
+</mat-card>
