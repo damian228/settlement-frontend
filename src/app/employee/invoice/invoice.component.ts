@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { InvoiceService } from '@app/employee/invoice/invoice.service';
 import { InvoiceDTO, ListChunk, PageableFilterDTO } from '@app/shared/dto';
 import { PageEvent } from '@angular/material';
 import { Constants } from '@app/shared/constants';
+import { finalize } from 'rxjs/operators';
+import { FileUtilsService } from '@app/shared/file-utils.service';
 
 @Component({
   selector: 'app-invoice',
@@ -14,8 +16,16 @@ import { Constants } from '@app/shared/constants';
 export class InvoiceComponent implements OnInit {
   activeInvoices: ListChunk<InvoiceDTO>;
   activeShowColumns: string[] = Constants.EMPLOYEE_ACTIVE_INVOICES_COLUMNS;
+  showAttachmentEl = false;
 
-  constructor(private invoiceService: InvoiceService, private route: ActivatedRoute, private toastr: ToastrService) {}
+  @ViewChild('attachmentEl') attachmentEl: ElementRef;
+
+  constructor(
+    private invoiceService: InvoiceService,
+    private route: ActivatedRoute,
+    private toastr: ToastrService,
+    private fileService: FileUtilsService
+  ) {}
 
   ngOnInit() {
     this.activeInvoices = this.route.snapshot.data['invoices'];
@@ -29,7 +39,15 @@ export class InvoiceComponent implements OnInit {
     this.fetchActiveInvoices({ pageNumber: pageEvent.pageIndex, pageSize: pageEvent.pageSize });
   }
 
-  onEdit(ivoiceId: number): void {}
+  onEdit(invoiceId: number): void {}
 
-  onDownload(ivoiceId: number): void {}
+  onDownload(invoiceId: number): void {
+    this.showAttachmentEl = true;
+    this.invoiceService
+      .getAttachment(invoiceId)
+      .pipe(finalize(() => (this.showAttachmentEl = false)))
+      .subscribe(file => {
+        this.fileService.downloadFile(file, this.attachmentEl);
+      });
+  }
 }
