@@ -19,6 +19,7 @@ export class BillComponent implements OnInit {
   archivedBills: ListChunk<BillDTO>;
   initPageSize = 5;
   showColumns = Constants.EMPLOYEE_ARCHIVE_BILLS_COLUMNS;
+  constants = Constants;
 
   constructor(private billService: BillService, private route: ActivatedRoute, private toastr: ToastrService) {}
 
@@ -39,6 +40,14 @@ export class BillComponent implements OnInit {
 
   fetchArchivedBills(filter: PageableFilterDTO): void {
     this.billService.getArchived(filter).subscribe(bills => (this.archivedBills = bills));
+  }
+
+  refreshCurrentBill() {
+    this.isLoading = true;
+    this.billService
+      .getBill(this.currentBill.id)
+      .pipe(finalize(() => (this.isLoading = false)))
+      .subscribe(bill => (this.currentBill = bill));
   }
 
   generateBill() {
@@ -65,7 +74,10 @@ export class BillComponent implements OnInit {
     this.billService
       .sendBill(this.currentBill.id)
       .pipe(finalize(() => (this.isLoading = false)))
-      .subscribe(() => this.toastr.success('Bill has been sent to manager'));
+      .subscribe(() => {
+        this.toastr.success('Bill has been sent to manager');
+        this.refreshCurrentBill();
+      });
   }
 
   onPagerChane(pageEvent: PageEvent): void {

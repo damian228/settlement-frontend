@@ -57,6 +57,7 @@ export interface BillDetailsDTO {
   tax: number;
   hours: number;
   salary: number;
+  status: string;
 }
 
 export interface CreateBillDTO {

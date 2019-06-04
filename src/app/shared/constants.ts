@@ -12,6 +12,13 @@ export class Constants {
   public static EMPLOYEE_ROLE = 'EMPLOYEE';
   public static ANONYMOUS_ROLE = 'ANONYMOUS';
 
+  // bill statuses
+  public static BILL_STATUS_SAVED = 'SAVED';
+  public static BILL_STATUS_SENT = 'SENT';
+  public static BILL_STATUS_REJECTED = 'REJECTED';
+  public static BILL_STATUS_ACCEPTED = 'ACCEPTED';
+  public static BILL_STATUS_PROCESSED = 'PROCESSED';
+
   public static EMPLOYEE_ARCHIVE_BILLS_COLUMNS = [
     'id',
     'settlementNumber',
@@ -23,7 +30,8 @@ export class Constants {
     'incomeCosts',
     'tax',
     'salary',
-    'hours'
+    'hours',
+    'status'
   ];
 
   public static EMPLOYEE_ACTIVE_INVOICES_COLUMNS = ['id', 'amount', 'employeeId', 'settlementNumber', 'status', 'download', 'edit'];
