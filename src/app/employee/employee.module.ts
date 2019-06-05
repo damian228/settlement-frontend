@@ -29,6 +29,7 @@ import { InvoiceComponent } from './invoice/invoice.component';
 import { InvoiceService } from '@app/employee/invoice/invoice.service';
 import { InvoiceResolver } from '@app/employee/invoice/invoice.resolver';
 import { InvoiceListComponent } from './invoice/invoice-list/invoice-list.component';
+import { DialogAddInvoice } from './invoice/dialog-add-invoice/dialog-add-invoice';
 
 @NgModule({
   imports: [
@@ -57,9 +58,10 @@ import { InvoiceListComponent } from './invoice/invoice-list/invoice-list.compon
     BillListComponent,
     BillCreateComponent,
     InvoiceComponent,
-    InvoiceListComponent
+    InvoiceListComponent,
+    DialogAddInvoice
   ],
-  entryComponents: [DialogAddHours, DialogSalary, DialogAccountNumber],
+  entryComponents: [DialogAddHours, DialogSalary, DialogAccountNumber, DialogAddInvoice],
   providers: [HoursService, SalaryService, AccountNumberService, BillService, BillResolver, InvoiceService, InvoiceResolver]
 })
 export class EmployeeModule {}

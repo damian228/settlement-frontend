@@ -19,6 +19,12 @@ export class Constants {
   public static BILL_STATUS_ACCEPTED = 'ACCEPTED';
   public static BILL_STATUS_PROCESSED = 'PROCESSED';
 
+  // invoice statuses
+  public static INVOICE_STATUS_SENT = 'SENT';
+  public static INVOICE_STATUS_REJECTED = 'REJECTED';
+  public static INVOICE_STATUS_ACCEPTED = 'ACCEPTED';
+  public static INVOICE_STATUS_PROCESSED = 'PROCESSED';
+
   public static EMPLOYEE_ARCHIVE_BILLS_COLUMNS = [
     'id',
     'settlementNumber',
@@ -38,4 +44,6 @@ export class Constants {
 
   public static FILE_TYPE_PDF = 'data:application/pdf;base64,';
   public static FILE_TYPE_JPG = 'data:image/jpg;base64,';
+
+  public static INITIAL_INVOICE_FILTER = { pageNumber: 0, pageSize: 5 };
 }

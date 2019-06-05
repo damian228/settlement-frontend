@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { InvoiceDTO, ListChunk } from '@app/shared/dto';
 import { MatPaginator, MatTableDataSource, PageEvent } from '@angular/material';
+import { Constants } from '@app/shared/constants';
 
 @Component({
   selector: 'app-invoice-list',
@@ -22,9 +23,10 @@ export class InvoiceListComponent implements OnInit {
   @Output()
   download: EventEmitter<number> = new EventEmitter();
   @Output()
-  edit: EventEmitter<number> = new EventEmitter();
+  edit: EventEmitter<InvoiceDTO> = new EventEmitter();
 
   dataSource: MatTableDataSource<InvoiceDTO> = new MatTableDataSource<InvoiceDTO>();
+  constants = Constants;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -40,7 +42,7 @@ export class InvoiceListComponent implements OnInit {
     this.download.emit(id);
   }
 
-  onEdit(id: number) {
-    this.edit.emit(id);
+  onEdit(invoice: InvoiceDTO) {
+    this.edit.emit(invoice);
   }
 }

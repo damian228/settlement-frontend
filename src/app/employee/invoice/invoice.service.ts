@@ -20,7 +20,7 @@ export class InvoiceService {
     return this.httpClient.put(`/employee/invoice/${id}/edit`, addInvoiceDTO);
   }
 
-  getActual(pageableFilterDTO: PageableFilterDTO): Observable<ListChunk<InvoiceDTO>> {
+  getActive(pageableFilterDTO?: PageableFilterDTO): Observable<ListChunk<InvoiceDTO>> {
     return this.httpClient
       .skipErrorHandler()
       .post('/employee/invoice/actual', pageableFilterDTO)

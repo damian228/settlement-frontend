@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>Invoice details</h1>
+<form #invoiceForm>
+  <div fxLayout="column">
+    <mat-form-field>
+      <input type="number" matInput [(ngModel)]="data.amount" [placeholder]="'Amount' | translate" required name="amount" #hourInput />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="text"
+        matInput
+        required
+        [(ngModel)]="data.settlementNumber"
+        [placeholder]="'Settlement number' | translate"
+        name="settlementNumber"
+      />
+    </mat-form-field>
+    <div>
+      <button matInput type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+      <input hidden (change)="onFileSelected()" #fileInput type="file" name="file" accept=".jpg,.jpeg,.pdf" />
+      <span *ngIf="fileInput?.files[0]?.name" class="file-name">{{fileInput.files[0].name}}</span>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="closeWithoutSave()" translate>Close</button>
+      <button mat-button [mat-dialog-close]="data" [disabled]="!invoiceForm.checkValidity() || isLoading">
+        <span translate>Save</span>
+      </button>
+    </div>
+  </div>
+</form>

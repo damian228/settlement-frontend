@@ -79,7 +79,7 @@ export interface ListChunk<T> {
   list: T[];
 }
 
-export interface InvoiceDTO {
+export class InvoiceDTO {
   id: number;
   settlementNumber: string;
   employeeId: string;
@@ -87,13 +87,17 @@ export interface InvoiceDTO {
   status: string;
 }
 
-export interface FileDTO {
+export class FileDTO {
   content: string;
   name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
 }
 
 export interface AddInvoiceDTO {
   settlementNumber: string;
   amount: number;
-  fileDTO?: FileDTO;
+  fileDto?: FileDTO;
 }
