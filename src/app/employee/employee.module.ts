@@ -21,14 +21,12 @@ import { SalaryService } from '@app/employee/salary/salary.service';
 import { AccountNumberService } from '@app/employee/accout-number/account-number.service';
 import { DialogAccountNumber } from './accout-number/dialog-account-number/dialog-account-number';
 import { BillDetailsComponent } from './bill/bill-details/bill-details.component';
-import { BillListComponent } from './bill/bill-list/bill-list.component';
 import { BillService } from '@app/employee/bill/bill.service';
 import { BillResolver } from '@app/employee/bill/bill.resolver';
 import { BillCreateComponent } from './bill/bill-create/bill-create.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { InvoiceService } from '@app/employee/invoice/invoice.service';
 import { InvoiceResolver } from '@app/employee/invoice/invoice.resolver';
-import { InvoiceListComponent } from './invoice/invoice-list/invoice-list.component';
 import { DialogAddInvoice } from './invoice/dialog-add-invoice/dialog-add-invoice';
 
 @NgModule({
@@ -55,10 +53,8 @@ import { DialogAddInvoice } from './invoice/dialog-add-invoice/dialog-add-invoic
     DialogSalary,
     DialogAccountNumber,
     BillDetailsComponent,
-    BillListComponent,
     BillCreateComponent,
     InvoiceComponent,
-    InvoiceListComponent,
     DialogAddInvoice
   ],
   entryComponents: [DialogAddHours, DialogSalary, DialogAccountNumber, DialogAddInvoice],
