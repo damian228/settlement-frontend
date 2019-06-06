@@ -7,6 +7,8 @@ import { untilDestroyed } from '@app/core';
 import { DialogSalary } from '@app/employee/salary/dialog-salary/dialog-salary';
 import { SalaryService } from '@app/employee/salary/salary.service';
 import { DialogAccountNumber } from '@app/employee/accout-number/dialog-account-number/dialog-account-number';
+import { LoggedUserService } from '@app/core/logged-user.service';
+import { Constants } from '@app/shared/constants';
 
 @Component({
   selector: 'app-shell',
@@ -14,9 +16,16 @@ import { DialogAccountNumber } from '@app/employee/accout-number/dialog-account-
   styleUrls: ['./shell.component.scss']
 })
 export class ShellComponent implements OnInit, OnDestroy {
+  constants = Constants;
+
   @ViewChild('sidenav') sidenav!: MatSidenav;
 
-  constructor(private dialog: MatDialog, private salaryService: SalaryService, private media: MediaObserver) {}
+  constructor(
+    private dialog: MatDialog,
+    private salaryService: SalaryService,
+    private media: MediaObserver,
+    private loggedUserService: LoggedUserService
+  ) {}
 
   ngOnInit() {
     // Automatically close side menu on screens > sm breakpoint
@@ -26,6 +35,10 @@ export class ShellComponent implements OnInit, OnDestroy {
         untilDestroyed(this)
       )
       .subscribe(() => this.sidenav.close());
+  }
+
+  hasRole(role: string): boolean {
+    return this.loggedUserService.hasRole(role);
   }
 
   showSalary(): void {

@@ -2,7 +2,7 @@
   <mat-sidenav-container fxFill>
     <mat-sidenav #sidenav mode="over" ngClass.gt-sm="has-border">
       <nav>
-        <mat-list>
+        <mat-list *ngIf="hasRole(constants.EMPLOYEE_ROLE)">
           <mat-divider></mat-divider>
           <a mat-list-item routerLink="/employee/calendar" routerLinkActive="active" (click)="sidenav.close()">
             <span translate>Calendar</span>
@@ -22,6 +22,22 @@
           <mat-divider></mat-divider>
           <a mat-list-item (click)="showAccountNumber(); sidenav.close()">
             <span translate>Account number</span>
+          </a>
+          <mat-divider></mat-divider>
+        </mat-list>
+
+        <mat-list *ngIf="hasRole(constants.MANAGER_ROLE)">
+          <mat-divider></mat-divider>
+          <a mat-list-item routerLink="/manager/info" routerLinkActive="active" (click)="sidenav.close()">
+            <span translate>Info</span>
+          </a>
+          <mat-divider></mat-divider>
+        </mat-list>
+
+        <mat-list *ngIf="hasRole(constants.PAYROLL_ROLE)">
+          <mat-divider></mat-divider>
+          <a mat-list-item routerLink="/payroll/bill" routerLinkActive="active" (click)="sidenav.close()">
+            <span translate>Bill</span>
           </a>
           <mat-divider></mat-divider>
         </mat-list>

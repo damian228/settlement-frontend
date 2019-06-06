@@ -6,7 +6,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { RouteReusableStrategy } from './route-reusable-strategy';
 import { AuthenticationService } from './authentication/authentication.service';
 import { TokenService } from './authentication/token.service';
-import { AuthenticationGuard } from './authentication/authentication.guard';
 import { I18nService } from './i18n.service';
 import { HttpService } from './http/http.service';
 import { HttpCacheService } from './http/http-cache.service';
@@ -15,14 +14,15 @@ import { ErrorHandlerInterceptor } from './http/error-handler.interceptor';
 import { CacheInterceptor } from './http/cache.interceptor';
 import { AuthInterceptor } from '@app/core/http/auth.interceptor';
 import { CommonStorageService } from '@app/core/common.storage.service';
-import { RouteNavigatorService } from '@app/core/route.navigator.service';
+import { LoggedUserService } from '@app/core/logged-user.service';
+import { AuthenticationGuard } from '@app/core/authentication/authentication.guard';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule, TranslateModule, RouterModule],
   providers: [
     AuthenticationService,
     CommonStorageService,
-    RouteNavigatorService,
+    LoggedUserService,
     TokenService,
     AuthenticationGuard,
     I18nService,

@@ -3,10 +3,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSidenav } from '@angular/material';
 
-import { AuthenticationService, I18nService, TokenService } from '@app/core';
+import { AuthenticationService, I18nService } from '@app/core';
 import { CommonStorageService } from '@app/core/common.storage.service';
 import { Constants } from '@app/shared/constants';
 import { UserFront } from '@app/shared/dto';
+import { LoggedUserService } from '@app/core/logged-user.service';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +22,8 @@ export class HeaderComponent implements OnInit {
     private titleService: Title,
     private authenticationService: AuthenticationService,
     private commonStorageService: CommonStorageService,
-    private i18nService: I18nService
+    private i18nService: I18nService,
+    private loggedUserService: LoggedUserService
   ) {}
 
   ngOnInit() {}
@@ -32,6 +34,10 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authenticationService.logout().subscribe(() => this.router.navigate([Constants.LOGIN_ROUTE], { replaceUrl: true }));
+  }
+
+  getUserHome(): string {
+    return this.loggedUserService.getRouteForUser();
   }
 
   get currentLanguage(): string {
