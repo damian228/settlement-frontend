@@ -16,6 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ToastrModule } from 'ngx-toastr';
 import { MAT_DATE_LOCALE } from '@angular/material';
 import { ManagerModule } from '@app/manager/manager.module';
+import { PayrollModule } from '@app/payroll/payroll.module';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { ManagerModule } from '@app/manager/manager.module';
     ShellModule,
     EmployeeModule,
     ManagerModule,
+    PayrollModule,
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],
