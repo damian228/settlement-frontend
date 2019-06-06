@@ -19,6 +19,9 @@ export class InvoiceComponent implements OnInit {
   activeShowColumns: string[] = Constants.EMPLOYEE_ACTIVE_INVOICES_COLUMNS;
   showAttachmentEl = false;
   activeFilter: PageableFilterDTO = Constants.INITIAL_INVOICE_FILTER;
+  archivedInvoices: ListChunk<InvoiceDTO>;
+  archivedShowColumns: string[] = Constants.EMPLOYEE_ARCHIVED_INVOICES_COLUMNS;
+  showArchived = false;
 
   @ViewChild('attachmentEl') attachmentEl: ElementRef;
 
@@ -36,6 +39,13 @@ export class InvoiceComponent implements OnInit {
 
   fetchActiveInvoices(filter: PageableFilterDTO): void {
     this.invoiceService.getActive(filter).subscribe(invoices => (this.activeInvoices = invoices));
+  }
+
+  fetchArchivedInvoices(filter: PageableFilterDTO): void {
+    this.invoiceService.getArchived(filter).subscribe(invoices => {
+      this.archivedInvoices = invoices;
+      this.showArchived = true;
+    });
   }
 
   editInvoice(id: number, invoice: AddInvoiceDTO) {
@@ -75,6 +85,10 @@ export class InvoiceComponent implements OnInit {
     this.activeFilter = Constants.INITIAL_INVOICE_FILTER;
   }
 
+  onShowArchived(): void {
+    this.fetchArchivedInvoices(Constants.INITIAL_INVOICE_FILTER);
+  }
+
   onAddInvoice(): void {
     this.showDialog(new InvoiceDTO());
   }
@@ -93,8 +107,12 @@ export class InvoiceComponent implements OnInit {
       });
   }
 
-  onPagerChane(pageEvent: PageEvent): void {
+  onActivePagerChane(pageEvent: PageEvent): void {
     this.activeFilter = { pageNumber: pageEvent.pageIndex, pageSize: pageEvent.pageSize };
     this.fetchActiveInvoices(this.activeFilter);
+  }
+
+  onArchivedPagerChane(pageEvent: PageEvent): void {
+    this.fetchActiveInvoices({ pageNumber: pageEvent.pageIndex, pageSize: pageEvent.pageSize });
   }
 }
