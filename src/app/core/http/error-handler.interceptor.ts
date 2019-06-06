@@ -33,6 +33,8 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
       this.router.navigate([Constants.LOGIN_ROUTE], { queryParams: { redirect: this.router.routerState.snapshot.url }, replaceUrl: true });
     } else if (response && response.status === 400 && response.error.message) {
       this.toastrService.error(response.error.message);
+    } else if (response && response.status === 500 && response.error.timestamp) {
+      this.toastrService.error(`Unexpected error occurred, errorID: ${response.error.timestamp}`);
     }
 
     throw response;
