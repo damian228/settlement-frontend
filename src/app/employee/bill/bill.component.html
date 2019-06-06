@@ -1,8 +1,8 @@
 <div class="bill" fxLayout="row wrap">
-  <mat-card *ngIf="currentBill.id" fxFlex="97" fxFlex.sm="auto" fxFlex.md="auto" fxFlex.gt-md="16">
+  <mat-card *ngIf="currentBill.id" fxFlex="auto" class="bill-form">
     <app-bill-details [billDetails]="currentBill" [readonly]="true"></app-bill-details>
   </mat-card>
-  <mat-card fxFlex="97" fxFlex.sm="auto" fxFlex.md="auto" fxFlex.gt-md="18">
+  <mat-card fxFlex="auto" class="bill-form">
     <app-bill-create [billCreate]="currentBill" [readonly]="false" (valid)="onValidate($event)"></app-bill-create>
     <button *ngIf="!currentBill.id" mat-button (click)="generateBill()" [disabled]="!billCreateValid || isLoading">
       Generate
@@ -29,7 +29,7 @@
       Send to manager
     </button>
   </mat-card>
-  <mat-card class="bill-list" fxFlex fxFlex.sm="100" fxFlex.md="100">
+  <mat-card class="bill-list" fxFlex.sm="100" fxFlex.md="100" fxFlex.gt-md="100">
     <h1 mat-dialog-title>Archived bills</h1>
     <app-bill-list
       *ngIf="archivedBills"
