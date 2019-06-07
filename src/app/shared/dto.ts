@@ -101,3 +101,15 @@ export interface AddInvoiceDTO {
   amount: number;
   fileDto?: FileDTO;
 }
+
+export interface EmployeeInfoDTO {
+  employeeId: string;
+  hours: number;
+  remuneration: number;
+}
+
+export interface SummaryDTO {
+  billCount: number;
+  employeesCount: number;
+  invoicesCount: number;
+}

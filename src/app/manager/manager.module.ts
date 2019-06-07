@@ -9,6 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { InfoComponent } from './info/info.component';
 import { ManagerRoutingModule } from '@app/manager/manager-routing.module';
+import { InfoService } from '@app/manager/info/info.service';
+import { InfoResolver } from '@app/manager/info/info.resolver';
 
 @NgModule({
   imports: [
@@ -22,6 +24,7 @@ import { ManagerRoutingModule } from '@app/manager/manager-routing.module';
     BrowserAnimationsModule,
     FormsModule
   ],
-  declarations: [InfoComponent]
+  declarations: [InfoComponent],
+  providers: [InfoService, InfoResolver]
 })
 export class ManagerModule {}
