@@ -1,3 +1,23 @@
-<p>
-  bill works!
-</p>
+<mat-card class="bill-list" fxFlex.sm="100" fxFlex.md="100" fxFlex.gt-md="100">
+  <h1 mat-dialog-title>Active bills</h1>
+  <app-bill-list
+    *ngIf="activeBills"
+    [billList]="activeBills"
+    [displayedColumns]="activeShowColumns"
+    (pagerChange)="onActivePagerChane($event)"
+    (accept)="onAccept($event)"
+    (reject)="onReject($event)"
+  ></app-bill-list>
+  <button *ngIf="!showArchived" mat-raised-button class="show-archived" (click)="onShowArchived()">
+    <span translate>Show archived bills</span>
+  </button>
+  <div *ngIf="showArchived" class="archived-container">
+    <h1 mat-dialog-title>Archived bills</h1>
+    <app-bill-list
+      *ngIf="archivedBills"
+      [billList]="archivedBills"
+      [displayedColumns]="archivedShowColumns"
+      (pagerChange)="onArchivedPagerChane($event)"
+    ></app-bill-list>
+  </div>
+</mat-card>

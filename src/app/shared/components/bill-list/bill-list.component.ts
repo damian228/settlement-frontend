@@ -19,6 +19,10 @@ export class BillListComponent implements OnInit {
 
   @Output()
   pagerChange: EventEmitter<PageEvent> = new EventEmitter();
+  @Output()
+  accept: EventEmitter<number> = new EventEmitter();
+  @Output()
+  reject: EventEmitter<number> = new EventEmitter();
 
   dataSource: MatTableDataSource<BillDTO> = new MatTableDataSource<BillDTO>();
 
@@ -30,5 +34,13 @@ export class BillListComponent implements OnInit {
 
   onPageEvent(pageEvent: PageEvent) {
     this.pagerChange.emit(pageEvent);
+  }
+
+  onAccept(billId: number) {
+    this.accept.emit(billId);
+  }
+
+  onReject(billId: number) {
+    this.reject.emit(billId);
   }
 }

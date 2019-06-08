@@ -25,7 +25,7 @@ export class Constants {
   public static INVOICE_STATUS_ACCEPTED = 'ACCEPTED';
   public static INVOICE_STATUS_PROCESSED = 'PROCESSED';
 
-  public static EMPLOYEE_ARCHIVE_BILLS_COLUMNS = [
+  public static ARCHIVE_BILLS_COLUMNS = [
     'id',
     'settlementNumber',
     'from',
@@ -38,6 +38,23 @@ export class Constants {
     'salary',
     'hours',
     'status'
+  ];
+
+  public static MANAGER_ACTIVE_BILLS_COLUMNS = [
+    'id',
+    'settlementNumber',
+    'from',
+    'to',
+    'employeeId',
+    'brutto',
+    'netto',
+    'incomeCosts',
+    'tax',
+    'salary',
+    'hours',
+    'status',
+    'accept',
+    'reject'
   ];
 
   public static EMPLOYEE_ACTIVE_INVOICES_COLUMNS = ['id', 'amount', 'employeeId', 'settlementNumber', 'status', 'download', 'edit'];

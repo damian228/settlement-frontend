@@ -17,8 +17,7 @@ export class BillComponent implements OnInit {
   billCreateValid: boolean;
   isLoading = false;
   archivedBills: ListChunk<BillDTO>;
-  initPageSize = 5;
-  showColumns = Constants.EMPLOYEE_ARCHIVE_BILLS_COLUMNS;
+  showColumns = Constants.ARCHIVE_BILLS_COLUMNS;
   constants = Constants;
 
   constructor(private billService: BillService, private route: ActivatedRoute, private toastr: ToastrService) {}
@@ -26,7 +25,7 @@ export class BillComponent implements OnInit {
   ngOnInit() {
     this.currentBill = this.route.snapshot.data['bill'];
     this.billCreateValid = this.initBillCreateValidation();
-    this.fetchArchivedBills({ pageNumber: 0, pageSize: this.initPageSize });
+    this.fetchArchivedBills(Constants.INITIAL_BILL_FILTER);
   }
 
   initBillCreateValidation(): boolean {
