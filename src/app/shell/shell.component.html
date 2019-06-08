@@ -32,6 +32,10 @@
             <span translate>Info</span>
           </a>
           <mat-divider></mat-divider>
+          <a mat-list-item routerLink="/manager/bill" routerLinkActive="active" (click)="sidenav.close()">
+            <span translate>Bills</span>
+          </a>
+          <mat-divider></mat-divider>
         </mat-list>
 
         <mat-list *ngIf="hasRole(constants.PAYROLL_ROLE)">

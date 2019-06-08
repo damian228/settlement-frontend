@@ -5,6 +5,8 @@ import { NgModule } from '@angular/core';
 import { InfoComponent } from '@app/manager/info/info.component';
 import { ManagerGuard } from '@app/manager/manager.guard';
 import { InfoResolver } from '@app/manager/info/info.resolver';
+import { BillComponent } from '@app/manager/bill/bill.component';
+import { BillResolver } from '@app/manager/bill/bill.resolver';
 
 const routes: Routes = [
   Shell.childRoutes([
@@ -14,6 +16,13 @@ const routes: Routes = [
       component: InfoComponent,
       resolve: { employees: InfoResolver },
       data: { title: extract('Info') },
+      canActivate: [ManagerGuard]
+    },
+    {
+      path: 'manager/bill',
+      component: BillComponent,
+      resolve: { bills: BillResolver },
+      data: { title: extract('Bill') },
       canActivate: [ManagerGuard]
     }
   ])

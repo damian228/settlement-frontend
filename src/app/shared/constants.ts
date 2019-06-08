@@ -49,4 +49,5 @@ export class Constants {
   public static FILE_TYPE_JPG = 'data:image/jpg;base64,';
 
   public static INITIAL_INVOICE_FILTER = { pageNumber: 0, pageSize: 5 };
+  public static INITIAL_BILL_FILTER = { pageNumber: 0, pageSize: 5 };
 }
