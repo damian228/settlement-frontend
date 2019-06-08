@@ -58,7 +58,17 @@ export class Constants {
   ];
 
   public static EMPLOYEE_ACTIVE_INVOICES_COLUMNS = ['id', 'amount', 'employeeId', 'settlementNumber', 'status', 'download', 'edit'];
-  public static EMPLOYEE_ARCHIVED_INVOICES_COLUMNS = ['id', 'amount', 'employeeId', 'settlementNumber', 'status'];
+  public static ARCHIVED_INVOICES_COLUMNS = ['id', 'amount', 'employeeId', 'settlementNumber', 'status', 'download'];
+  public static MANAGER_ACTIVE_INVOICES_COLUMNS = [
+    'id',
+    'amount',
+    'employeeId',
+    'settlementNumber',
+    'status',
+    'accept',
+    'reject',
+    'download'
+  ];
 
   public static MANAGER_INFO_COLUMNS = ['employeeId', 'hours', 'remuneration'];
 

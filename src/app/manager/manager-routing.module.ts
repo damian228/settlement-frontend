@@ -7,6 +7,8 @@ import { ManagerGuard } from '@app/manager/manager.guard';
 import { InfoResolver } from '@app/manager/info/info.resolver';
 import { BillComponent } from '@app/manager/bill/bill.component';
 import { BillResolver } from '@app/manager/bill/bill.resolver';
+import { InvoiceComponent } from '@app/manager/invoice/invoice.component';
+import { InvoiceResolver } from '@app/manager/invoice/invoice.resolver';
 
 const routes: Routes = [
   Shell.childRoutes([
@@ -23,6 +25,13 @@ const routes: Routes = [
       component: BillComponent,
       resolve: { bills: BillResolver },
       data: { title: extract('Bill') },
+      canActivate: [ManagerGuard]
+    },
+    {
+      path: 'manager/invoice',
+      component: InvoiceComponent,
+      resolve: { invoices: InvoiceResolver },
+      data: { title: extract('Invoice') },
       canActivate: [ManagerGuard]
     }
   ])

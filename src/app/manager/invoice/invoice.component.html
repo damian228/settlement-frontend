@@ -1,16 +1,12 @@
 <mat-card class="invoice-list" fxFlex fxFlex.sm="100" fxFlex.md="100">
-  <div class="invoice-header">
-    <h1 mat-dialog-title>Active invoices</h1>
-    <button mat-raised-button color="primary" class="add-invoice" (click)="onAddInvoice()">
-      <span translate>Add invoice</span>
-    </button>
-  </div>
+  <h1 mat-dialog-title>Active invoices</h1>
   <app-invoice-list
     *ngIf="activeInvoices"
     [invoiceList]="activeInvoices"
     [displayedColumns]="activeShowColumns"
     (pagerChange)="onActivePagerChane($event)"
-    (edit)="onEdit($event)"
+    (reject)="onReject($event)"
+    (accept)="onAccept($event)"
     (download)="onDownload($event)"
   ></app-invoice-list>
   <button *ngIf="!showArchived" mat-raised-button class="show-archived" (click)="onShowArchived()">

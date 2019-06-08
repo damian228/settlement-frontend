@@ -24,6 +24,10 @@ export class InvoiceListComponent implements OnInit {
   download: EventEmitter<number> = new EventEmitter();
   @Output()
   edit: EventEmitter<InvoiceDTO> = new EventEmitter();
+  @Output()
+  accept: EventEmitter<number> = new EventEmitter();
+  @Output()
+  reject: EventEmitter<number> = new EventEmitter();
 
   dataSource: MatTableDataSource<InvoiceDTO> = new MatTableDataSource<InvoiceDTO>();
   constants = Constants;
@@ -44,5 +48,13 @@ export class InvoiceListComponent implements OnInit {
 
   onEdit(invoice: InvoiceDTO) {
     this.edit.emit(invoice);
+  }
+
+  onAccept(billId: number) {
+    this.accept.emit(billId);
+  }
+
+  onReject(billId: number) {
+    this.reject.emit(billId);
   }
 }

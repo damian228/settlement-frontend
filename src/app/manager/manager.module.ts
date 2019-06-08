@@ -14,6 +14,9 @@ import { InfoResolver } from '@app/manager/info/info.resolver';
 import { BillComponent } from './bill/bill.component';
 import { BillResolver } from '@app/manager/bill/bill.resolver';
 import { BillService } from '@app/manager/bill/bill.service';
+import { InvoiceComponent } from './invoice/invoice.component';
+import { InvoiceService } from '@app/manager/invoice/invoice.service';
+import { InvoiceResolver } from '@app/manager/invoice/invoice.resolver';
 
 @NgModule({
   imports: [
@@ -27,7 +30,7 @@ import { BillService } from '@app/manager/bill/bill.service';
     BrowserAnimationsModule,
     FormsModule
   ],
-  declarations: [InfoComponent, BillComponent],
-  providers: [InfoService, InfoResolver, BillService, BillResolver]
+  declarations: [InfoComponent, BillComponent, InvoiceComponent],
+  providers: [InfoService, InfoResolver, BillService, BillResolver, InvoiceService, InvoiceResolver]
 })
 export class ManagerModule {}

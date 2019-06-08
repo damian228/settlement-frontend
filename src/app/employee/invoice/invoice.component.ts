@@ -20,7 +20,7 @@ export class InvoiceComponent implements OnInit {
   showAttachmentEl = false;
   activeFilter: PageableFilterDTO = Constants.INITIAL_INVOICE_FILTER;
   archivedInvoices: ListChunk<InvoiceDTO>;
-  archivedShowColumns: string[] = Constants.EMPLOYEE_ARCHIVED_INVOICES_COLUMNS;
+  archivedShowColumns: string[] = Constants.ARCHIVED_INVOICES_COLUMNS;
   showArchived = false;
 
   @ViewChild('attachmentEl') attachmentEl: ElementRef;
