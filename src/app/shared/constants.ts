@@ -43,6 +43,8 @@ export class Constants {
   public static EMPLOYEE_ACTIVE_INVOICES_COLUMNS = ['id', 'amount', 'employeeId', 'settlementNumber', 'status', 'download', 'edit'];
   public static EMPLOYEE_ARCHIVED_INVOICES_COLUMNS = ['id', 'amount', 'employeeId', 'settlementNumber', 'status'];
 
+  public static MANAGER_INFO_COLUMNS = ['employeeId', 'hours', 'remuneration'];
+
   public static FILE_TYPE_PDF = 'data:application/pdf;base64,';
   public static FILE_TYPE_JPG = 'data:image/jpg;base64,';
 
