@@ -1,4 +1,9 @@
-<mat-card class="employees-info">
+<mat-card class="employees-info" fxFlex="97">
+  <div class="stats">
+    <span>Total employees: {{ summary?.employeesCount }}</span>
+    <span>Total bills: {{ summary?.billCount }}</span>
+    <span>Total invoices: {{ summary?.invoicesCount }}</span>
+  </div>
   <table mat-table [dataSource]="employees" matSort>
     <ng-container matColumnDef="employeeId">
       <th mat-header-cell *matHeaderCellDef translate mat-sort-header>Employee id</th>
