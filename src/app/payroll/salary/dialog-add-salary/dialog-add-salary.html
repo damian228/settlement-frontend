@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>Employee salary</h1>
+<form #salaryForm>
+  <div fxLayout="column">
+    <mat-form-field>
+      <input
+        type="text"
+        matInput
+        required
+        [(ngModel)]="data.employeeId"
+        [placeholder]="'Employee id' | translate"
+        [disabled]="disableEmployeeId"
+        name="employeeId"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input type="number" matInput [(ngModel)]="data.salary" [placeholder]="'Salary' | translate" required name="salary" />
+    </mat-form-field>
+    <div mat-dialog-actions>
+      <button mat-button (click)="closeWithoutSave()" translate>Close</button>
+      <button mat-button [mat-dialog-close]="data" [disabled]="!salaryForm.checkValidity()">
+        <span translate>Save</span>
+      </button>
+    </div>
+  </div>
+</form>

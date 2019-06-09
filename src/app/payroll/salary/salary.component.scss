@@ -1,0 +1,20 @@
+.salary-container {
+  min-width: 435px;
+  margin: 0 auto;
+
+  .salary-header {
+    padding-left: 20px;
+
+    h1 {
+      display: inline-block;
+    }
+
+    .add-salary {
+      margin-left: 40px;
+    }
+  }
+
+  table {
+    width: 100%;
+  }
+}

@@ -122,7 +122,7 @@ export interface SummaryDTO {
   invoicesCount: number;
 }
 
-export interface SalaryDTO {
+export class SalaryDTO {
   employeeId: string;
   salary: number;
 }
