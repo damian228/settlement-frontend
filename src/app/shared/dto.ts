@@ -68,6 +68,10 @@ export interface CreateBillDTO {
 
 export interface BillDTO extends BillDetailsDTO, CreateBillDTO {}
 
+export interface BillAccountNumberDTO extends BillDTO {
+  accountNumber: string;
+}
+
 export interface PageableFilterDTO {
   pageNumber: number;
   pageSize: number;

@@ -40,6 +40,22 @@ export class Constants {
     'status'
   ];
 
+  public static PAYROLL_ARCHIVE_BILLS_COLUMNS = [
+    'id',
+    'settlementNumber',
+    'from',
+    'to',
+    'employeeId',
+    'brutto',
+    'netto',
+    'incomeCosts',
+    'tax',
+    'salary',
+    'hours',
+    'status',
+    'accountNumber'
+  ];
+
   public static MANAGER_ACTIVE_BILLS_COLUMNS = [
     'id',
     'settlementNumber',
@@ -55,6 +71,23 @@ export class Constants {
     'status',
     'accept',
     'reject'
+  ];
+
+  public static PAYROLL_ACTIVE_BILLS_COLUMNS = [
+    'id',
+    'settlementNumber',
+    'from',
+    'to',
+    'employeeId',
+    'brutto',
+    'netto',
+    'incomeCosts',
+    'tax',
+    'salary',
+    'hours',
+    'status',
+    'accountNumber',
+    'markProcessed'
   ];
 
   public static EMPLOYEE_ACTIVE_INVOICES_COLUMNS = ['id', 'amount', 'employeeId', 'settlementNumber', 'status', 'download', 'edit'];

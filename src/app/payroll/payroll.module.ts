@@ -9,6 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { PayrollRoutingModule } from '@app/payroll/payroll-routing.module';
 import { BillComponent } from './bill/bill.component';
+import { BillService } from '@app/payroll/bill/bill.service';
+import { BillResolver } from '@app/payroll/bill/bill.resolver';
 
 @NgModule({
   imports: [
@@ -22,6 +24,7 @@ import { BillComponent } from './bill/bill.component';
     BrowserAnimationsModule,
     FormsModule
   ],
-  declarations: [BillComponent]
+  declarations: [BillComponent],
+  providers: [BillService, BillResolver]
 })
 export class PayrollModule {}

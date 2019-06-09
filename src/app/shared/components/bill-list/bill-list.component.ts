@@ -23,6 +23,8 @@ export class BillListComponent implements OnInit {
   accept: EventEmitter<number> = new EventEmitter();
   @Output()
   reject: EventEmitter<number> = new EventEmitter();
+  @Output()
+  markProcessed: EventEmitter<number> = new EventEmitter();
 
   dataSource: MatTableDataSource<BillDTO> = new MatTableDataSource<BillDTO>();
 
@@ -42,5 +44,9 @@ export class BillListComponent implements OnInit {
 
   onReject(billId: number) {
     this.reject.emit(billId);
+  }
+
+  onMarkProcessed(billId: number) {
+    this.markProcessed.emit(billId);
   }
 }
