@@ -7,6 +7,8 @@ import { PayrollGuard } from '@app/payroll/payroll.guard';
 import { BillResolver } from '@app/payroll/bill/bill.resolver';
 import { InvoiceComponent } from '@app/payroll/invoice/invoice.component';
 import { InvoiceResolver } from '@app/payroll/invoice/invoice.resolver';
+import { SalaryComponent } from '@app/payroll/salary/salary.component';
+import { SalaryResolver } from '@app/payroll/salary/salary.resolver';
 
 const routes: Routes = [
   Shell.childRoutes([
@@ -23,6 +25,13 @@ const routes: Routes = [
       component: InvoiceComponent,
       resolve: { invoices: InvoiceResolver },
       data: { title: extract('Invoice') },
+      canActivate: [PayrollGuard]
+    },
+    {
+      path: 'payroll/salary',
+      component: SalaryComponent,
+      resolve: { salaries: SalaryResolver },
+      data: { title: extract('Salary') },
       canActivate: [PayrollGuard]
     }
   ])

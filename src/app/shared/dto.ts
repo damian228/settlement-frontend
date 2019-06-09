@@ -121,3 +121,8 @@ export interface SummaryDTO {
   employeesCount: number;
   invoicesCount: number;
 }
+
+export interface SalaryDTO {
+  employeeId: string;
+  salary: number;
+}

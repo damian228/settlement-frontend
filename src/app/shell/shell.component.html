@@ -45,11 +45,15 @@
         <mat-list *ngIf="hasRole(constants.PAYROLL_ROLE)">
           <mat-divider></mat-divider>
           <a mat-list-item routerLink="/payroll/bill" routerLinkActive="active" (click)="sidenav.close()">
-            <span translate>Bill</span>
+            <span translate>Bills</span>
           </a>
           <mat-divider></mat-divider>
           <a mat-list-item routerLink="/payroll/invoice" routerLinkActive="active" (click)="sidenav.close()">
-            <span translate>Invoice</span>
+            <span translate>Invoices</span>
+          </a>
+          <mat-divider></mat-divider>
+          <a mat-list-item routerLink="/payroll/salary" routerLinkActive="active" (click)="sidenav.close()">
+            <span translate>Salaries</span>
           </a>
           <mat-divider></mat-divider>
         </mat-list>

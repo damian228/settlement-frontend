@@ -124,6 +124,7 @@ export class Constants {
     'download'
   ];
 
+  public static PAYROLL_SALARY_COLUMNS = ['employeeId', 'salary', 'edit'];
   public static MANAGER_INFO_COLUMNS = ['employeeId', 'hours', 'remuneration'];
 
   public static FILE_TYPE_PDF = 'data:application/pdf;base64,';
@@ -131,4 +132,5 @@ export class Constants {
 
   public static INITIAL_INVOICE_FILTER = { pageNumber: 0, pageSize: 5 };
   public static INITIAL_BILL_FILTER = { pageNumber: 0, pageSize: 5 };
+  public static INITIAL_SALARY_FILTER = { pageNumber: 0, pageSize: 5 };
 }
