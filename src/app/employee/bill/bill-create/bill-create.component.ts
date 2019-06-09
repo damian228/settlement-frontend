@@ -19,7 +19,6 @@ export class BillCreateComponent implements OnInit {
   ngOnInit() {}
 
   onModelChanges(valid: boolean): void {
-    console.log('After changes', this.billCreate);
     this.valid.emit(valid);
   }
 }

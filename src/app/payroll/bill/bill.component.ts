@@ -22,7 +22,6 @@ export class BillComponent implements OnInit {
 
   ngOnInit() {
     this.activeBills = this.route.snapshot.data['bills'];
-    console.log('Bills', this.activeBills);
   }
 
   fetchActiveBills(filter: PageableFilterDTO): void {
