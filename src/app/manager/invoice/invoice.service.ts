@@ -27,7 +27,7 @@ export class InvoiceService {
     return this.httpClient.put(`/manager/invoice/${id}/reject`, null);
   }
 
-  getActive(pageableFilterDTO?: PageableFilterDTO): Observable<ListChunk<InvoiceDTO>> {
+  getActive(pageableFilterDTO: PageableFilterDTO): Observable<ListChunk<InvoiceDTO>> {
     return this.httpClient
       .skipErrorHandler()
       .post('/manager/invoice/actual', pageableFilterDTO)

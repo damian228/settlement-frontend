@@ -11,6 +11,9 @@ import { PayrollRoutingModule } from '@app/payroll/payroll-routing.module';
 import { BillComponent } from './bill/bill.component';
 import { BillService } from '@app/payroll/bill/bill.service';
 import { BillResolver } from '@app/payroll/bill/bill.resolver';
+import { InvoiceComponent } from './invoice/invoice.component';
+import { InvoiceResolver } from '@app/payroll/invoice/invoice.resolver';
+import { InvoiceService } from '@app/payroll/invoice/invoice.service';
 
 @NgModule({
   imports: [
@@ -24,7 +27,7 @@ import { BillResolver } from '@app/payroll/bill/bill.resolver';
     BrowserAnimationsModule,
     FormsModule
   ],
-  declarations: [BillComponent],
-  providers: [BillService, BillResolver]
+  declarations: [BillComponent, InvoiceComponent],
+  providers: [BillService, BillResolver, InvoiceService, InvoiceResolver]
 })
 export class PayrollModule {}

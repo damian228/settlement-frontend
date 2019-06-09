@@ -1,12 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { InvoiceDetailsDTO, ListChunk, PageableFilterDTO } from '@app/shared/dto';
+import { Constants } from '@app/shared/constants';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { InvoiceService } from '@app/manager/invoice/invoice.service';
-import { InvoiceDTO, ListChunk, PageableFilterDTO } from '@app/shared/dto';
-import { Constants } from '@app/shared/constants';
-import { PageEvent } from '@angular/material';
-import { finalize } from 'rxjs/operators';
 import { FileUtilsService } from '@app/shared/file-utils.service';
+import { finalize } from 'rxjs/operators';
+import { PageEvent } from '@angular/material';
+import { InvoiceService } from '@app/payroll/invoice/invoice.service';
 
 @Component({
   selector: 'app-invoice',
@@ -14,11 +14,11 @@ import { FileUtilsService } from '@app/shared/file-utils.service';
   styleUrls: ['./invoice.component.scss']
 })
 export class InvoiceComponent implements OnInit {
-  activeInvoices: ListChunk<InvoiceDTO>;
-  activeShowColumns: string[] = Constants.MANAGER_ACTIVE_INVOICES_COLUMNS;
+  activeInvoices: ListChunk<InvoiceDetailsDTO>;
+  activeShowColumns: string[] = Constants.PAYROLL_ACTIVE_INVOICES_COLUMNS;
   showAttachmentEl = false;
-  archivedInvoices: ListChunk<InvoiceDTO>;
-  archivedShowColumns: string[] = Constants.ARCHIVED_INVOICES_COLUMNS;
+  archivedInvoices: ListChunk<InvoiceDetailsDTO>;
+  archivedShowColumns: string[] = Constants.PAYROLL_ARCHIVE_INVOICES_COLUMNS;
   showArchived = false;
 
   @ViewChild('attachmentEl') attachmentEl: ElementRef;
@@ -45,20 +45,14 @@ export class InvoiceComponent implements OnInit {
     });
   }
 
-  onAccept(invoiceId: number): void {
-    this.invoiceService.acceptInvoice(invoiceId).subscribe(() => this.handleResult('Invoice accepted successfully'));
-  }
-
-  onReject(invoiceId: number) {
-    this.invoiceService.rejectInvoice(invoiceId).subscribe(() => this.handleResult('Invoice rejected successfully'));
-  }
-
-  private handleResult(message: string) {
-    this.fetchActiveInvoices(Constants.INITIAL_INVOICE_FILTER);
-    if (this.showArchived) {
-      this.fetchArchivedInvoices(Constants.INITIAL_INVOICE_FILTER);
-    }
-    this.toastrService.success(message);
+  onMarkProcessed(invoiceId: number): void {
+    this.invoiceService.markInvoiceProcessed(invoiceId).subscribe(() => {
+      this.fetchActiveInvoices(Constants.INITIAL_INVOICE_FILTER);
+      if (this.showArchived) {
+        this.fetchArchivedInvoices(Constants.INITIAL_INVOICE_FILTER);
+      }
+      this.toastrService.success('Invoice marked as processed');
+    });
   }
 
   onDownload(invoiceId: number): void {

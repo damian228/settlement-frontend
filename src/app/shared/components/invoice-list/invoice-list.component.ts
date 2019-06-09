@@ -28,6 +28,8 @@ export class InvoiceListComponent implements OnInit {
   accept: EventEmitter<number> = new EventEmitter();
   @Output()
   reject: EventEmitter<number> = new EventEmitter();
+  @Output()
+  markProcessed: EventEmitter<number> = new EventEmitter();
 
   dataSource: MatTableDataSource<InvoiceDTO> = new MatTableDataSource<InvoiceDTO>();
   constants = Constants;
@@ -50,11 +52,15 @@ export class InvoiceListComponent implements OnInit {
     this.edit.emit(invoice);
   }
 
-  onAccept(billId: number) {
-    this.accept.emit(billId);
+  onAccept(invoiceId: number) {
+    this.accept.emit(invoiceId);
   }
 
-  onReject(billId: number) {
-    this.reject.emit(billId);
+  onReject(invoiceId: number) {
+    this.reject.emit(invoiceId);
+  }
+
+  onMarkProcessed(invoiceId: number) {
+    this.markProcessed.emit(invoiceId);
   }
 }

@@ -91,6 +91,10 @@ export class InvoiceDTO {
   status: string;
 }
 
+export class InvoiceDetailsDTO extends InvoiceDTO {
+  accountNumber?: string;
+}
+
 export class FileDTO {
   content: string;
   name: string;

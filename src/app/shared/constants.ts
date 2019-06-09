@@ -103,6 +103,27 @@ export class Constants {
     'download'
   ];
 
+  public static PAYROLL_ACTIVE_INVOICES_COLUMNS = [
+    'id',
+    'amount',
+    'employeeId',
+    'settlementNumber',
+    'status',
+    'accountNumber',
+    'markProcessed',
+    'download'
+  ];
+
+  public static PAYROLL_ARCHIVE_INVOICES_COLUMNS = [
+    'id',
+    'amount',
+    'employeeId',
+    'settlementNumber',
+    'status',
+    'accountNumber',
+    'download'
+  ];
+
   public static MANAGER_INFO_COLUMNS = ['employeeId', 'hours', 'remuneration'];
 
   public static FILE_TYPE_PDF = 'data:application/pdf;base64,';

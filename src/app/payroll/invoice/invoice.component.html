@@ -1,0 +1,24 @@
+<mat-card class="invoice-list" fxFlex fxFlex.sm="100" fxFlex.md="100">
+  <h1 mat-dialog-title>Active invoices</h1>
+  <app-invoice-list
+    *ngIf="activeInvoices"
+    [invoiceList]="activeInvoices"
+    [displayedColumns]="activeShowColumns"
+    (pagerChange)="onActivePagerChane($event)"
+    (markProcessed)="onMarkProcessed($event)"
+    (download)="onDownload($event)"
+  ></app-invoice-list>
+  <button *ngIf="!showArchived" mat-raised-button class="show-archived" (click)="onShowArchived()">
+    <span translate>Show archived invoices</span>
+  </button>
+  <div *ngIf="showArchived" class="archived-container">
+    <h1 mat-dialog-title>Archived invoices</h1>
+    <app-invoice-list
+      [invoiceList]="archivedInvoices"
+      [displayedColumns]="archivedShowColumns"
+      (pagerChange)="onArchivedPagerChane($event)"
+      (download)="onDownload($event)"
+    ></app-invoice-list>
+  </div>
+</mat-card>
+<a *ngIf="showAttachmentEl" #attachmentEl></a>
