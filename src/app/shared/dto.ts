@@ -126,3 +126,14 @@ export class SalaryDTO {
   employeeId: string;
   salary: number;
 }
+
+export interface AddUserDTO {
+  userId: string;
+  forename: string;
+  surname: string;
+  role: string;
+}
+
+export interface PasswordDTO {
+  value: string;
+}

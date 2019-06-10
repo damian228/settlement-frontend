@@ -18,6 +18,7 @@ import { SalaryComponent } from './salary/salary.component';
 import { SalaryService } from '@app/payroll/salary/salary.service';
 import { SalaryResolver } from '@app/payroll/salary/salary.resolver';
 import { DialogAddSalary } from './salary/dialog-add-salary/dialog-add-salary';
+import { DialogDisableUser } from './user/dialog-disable-user/dialog-disable-user';
 
 @NgModule({
   imports: [
@@ -31,7 +32,7 @@ import { DialogAddSalary } from './salary/dialog-add-salary/dialog-add-salary';
     BrowserAnimationsModule,
     FormsModule
   ],
-  declarations: [BillComponent, InvoiceComponent, SalaryComponent, DialogAddSalary],
+  declarations: [BillComponent, InvoiceComponent, SalaryComponent, DialogAddSalary, DialogDisableUser],
   entryComponents: [DialogAddSalary],
   providers: [BillService, BillResolver, InvoiceService, InvoiceResolver, SalaryService, SalaryResolver]
 })

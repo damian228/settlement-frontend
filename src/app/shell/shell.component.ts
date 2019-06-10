@@ -58,6 +58,8 @@ export class ShellComponent implements OnInit, OnDestroy {
     });
   }
 
+  disableUser() {}
+
   ngOnDestroy() {
     // Needed for automatic unsubscribe with untilDestroyed
   }

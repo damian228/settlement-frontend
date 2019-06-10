@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
 import { AuthenticationService, I18nService, Logger, TokenService, untilDestroyed } from '@app/core';
 import { LoggedUserService } from '@app/core/logged-user.service';
+import { ToastrService } from 'ngx-toastr';
 
 const log = new Logger('Login');
 
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private i18nService: I18nService,
     private authenticationService: AuthenticationService,
     private tokenService: TokenService,
-    private navigatorService: LoggedUserService
+    private navigatorService: LoggedUserService,
+    private toastrService: ToastrService
   ) {
     this.createForm();
   }
@@ -58,7 +60,10 @@ export class LoginComponent implements OnInit, OnDestroy {
           });
         },
         error => {
-          log.debug(`Login error: ${error}`);
+          log.debug(`Login error:`, error);
+          if (error.error && error.error.errorCode === 'AUT_0004') {
+            this.toastrService.error('User has been blocked, for more info please contact administrator.');
+          }
           this.error = error;
         }
       );
