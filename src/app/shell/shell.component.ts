@@ -9,6 +9,7 @@ import { SalaryService } from '@app/employee/salary/salary.service';
 import { DialogAccountNumber } from '@app/employee/accout-number/dialog-account-number/dialog-account-number';
 import { LoggedUserService } from '@app/core/logged-user.service';
 import { Constants } from '@app/shared/constants';
+import { DialogDisableUser } from '@app/payroll/user/dialog-disable-user/dialog-disable-user';
 
 @Component({
   selector: 'app-shell',
@@ -58,7 +59,11 @@ export class ShellComponent implements OnInit, OnDestroy {
     });
   }
 
-  disableUser() {}
+  showDialogDisableUser() {
+    this.dialog.open(DialogDisableUser, {
+      width: '350px'
+    });
+  }
 
   ngOnDestroy() {
     // Needed for automatic unsubscribe with untilDestroyed

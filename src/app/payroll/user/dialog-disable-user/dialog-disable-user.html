@@ -1,3 +1,10 @@
-<p>
-  dialog-disable-user works!
-</p>
+<h1 mat-dialog-title>Enter employee id</h1>
+<mat-form-field class="user-input">
+  <input type="text" matInput [(ngModel)]="userId" [placeholder]="'Employee id' | translate" required #userInput />
+</mat-form-field>
+<div mat-dialog-actions>
+  <button mat-button (click)="closeWithoutSave()" translate>Close</button>
+  <button mat-button (click)="disableUser()" [disabled]="!isValid() || isLoading">
+    <span translate>Disable user</span>
+  </button>
+</div>
