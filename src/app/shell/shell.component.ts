@@ -10,6 +10,7 @@ import { DialogAccountNumber } from '@app/employee/accout-number/dialog-account-
 import { LoggedUserService } from '@app/core/logged-user.service';
 import { Constants } from '@app/shared/constants';
 import { DialogDisableUser } from '@app/payroll/user/dialog-disable-user/dialog-disable-user';
+import { DialogAddUser } from '@app/payroll/user/dialog-add-user/dialog-add-user';
 
 @Component({
   selector: 'app-shell',
@@ -61,6 +62,12 @@ export class ShellComponent implements OnInit, OnDestroy {
 
   showDialogDisableUser() {
     this.dialog.open(DialogDisableUser, {
+      width: '250px'
+    });
+  }
+
+  showAddUserDialog() {
+    this.dialog.open(DialogAddUser, {
       width: '350px'
     });
   }

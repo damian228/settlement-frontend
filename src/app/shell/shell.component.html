@@ -56,6 +56,10 @@
             <span translate>Salaries</span>
           </a>
           <mat-divider></mat-divider>
+          <a mat-list-item (click)="showAddUserDialog(); sidenav.close()">
+            <span translate>Add user</span>
+          </a>
+          <mat-divider></mat-divider>
           <a mat-list-item (click)="showDialogDisableUser(); sidenav.close()">
             <span translate>Disable user</span>
           </a>

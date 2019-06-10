@@ -127,7 +127,7 @@ export class SalaryDTO {
   salary: number;
 }
 
-export interface AddUserDTO {
+export class AddUserDTO {
   userId: string;
   forename: string;
   surname: string;
@@ -135,5 +135,10 @@ export interface AddUserDTO {
 }
 
 export interface PasswordDTO {
+  value: string;
+}
+
+export interface Role {
+  label: string;
   value: string;
 }

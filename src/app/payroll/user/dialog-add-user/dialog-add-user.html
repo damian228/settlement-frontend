@@ -1,0 +1,36 @@
+<form #userForm *ngIf="!addSuccess">
+  <h1 mat-dialog-title>Add new user</h1>
+  <div fxLayout="column">
+    <mat-form-field>
+      <input type="text" matInput [(ngModel)]="addUser.userId" [placeholder]="'User id' | translate" required name="userId" />
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" matInput [(ngModel)]="addUser.forename" [placeholder]="'Forename' | translate" required name="forename" />
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" matInput [(ngModel)]="addUser.surname" [placeholder]="'Surname' | translate" required name="surname" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>User role</mat-label>
+      <mat-select [(ngModel)]="addUser.role" name="role" required>
+        <mat-option *ngFor="let role of roles" [value]="role.value">
+          {{role.label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div mat-dialog-actions>
+      <button mat-button (click)="closeWithoutSave()" translate>Close</button>
+      <button mat-button (click)="onAddUser()" [disabled]="!userForm.checkValidity() || !addUser.role">
+        <span translate>Save</span>
+      </button>
+    </div>
+  </div>
+</form>
+<div *ngIf="addSuccess">
+  <h2>Success!</h2>
+  <div>User login: {{addUser.userId}}</div>
+  <div>User password: {{password.value}}</div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="closeWithoutSave()" translate>Close</button>
+  </div>
+</div>
