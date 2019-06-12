@@ -7,7 +7,7 @@
 
 export const environment = {
   production: true,
-  serverUrl: '/api',
+  serverUrl: '/settlement/api',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US', 'fr-FR']
 };
